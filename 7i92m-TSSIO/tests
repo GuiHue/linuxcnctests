@@ -1,0 +1,73 @@
+Input
+0   ok
+1   ok
+2   1,2,3
+3   3,4 (4 flashing)
+4   3,4 (3 flashing)
+5   4,5
+6   k
+7   k
+8   k
+9   k   
+10  k
+11 k
+12 k
+13 k
+14 k
+15 15,00  (aber nicht umgekehrt)
+16  k
+17 k bis 30
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31  k
+32  k
+33  k
+34  k 
+35 k
+36  k
+37  37,38,39
+38  sticky
+39  sticky
+40 k
+41 sticky
+42 k
+43 k
+44 k
+45 k
+46 k
+47 k
+48 k
+49 k
+50 ort unklar
+51 ort unklar
+52 ort unklar
+53 ort unklar   FLACKERT zusammen mit 58
+spindle
+54 k
+55 flackert
+56 k
+57 FLACKERT
+feed
+
+58 flackert
+59
+60
+61
+62
+free
+63 flackert wenn 62 high
+
+poti_1 k
+poti_2 k
+encoder k

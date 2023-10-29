@@ -1,0 +1,26 @@
+# 7i92m basic configuration for SSerial
+
+loadrt    [KINS]KINEMATICS
+loadrt    [EMCMOT]EMCMOT servo_period_nsec=[EMCMOT]SERVO_PERIOD num_joints=[KINS]JOINTS
+loadrt    hostmot2
+loadrt    hm2_eth board_ip="10.10.10.10" config="num_encoders=1 num_pwmgens=0 num_stepgens=5 sserial_port_0=222000" 
+setp      hm2_7i92.0.watchdog.timeout_ns 50000000
+
+addf      hm2_7i92.0.read              servo-thread
+addf      hm2_7i92.0.write             servo-thread
+addf      motion-command-handler       servo-thread
+addf      motion-controller            servo-thread
+
+loadusr   -W hal_manualtoolchange
+
+net       tool-change-request          iocontrol.0.tool-change       =>  hal_manualtoolchange.change
+net       tool-change-confirmed        iocontrol.0.tool-changed      <=  hal_manualtoolchange.changed
+net       tool-number                  iocontrol.0.tool-prep-number  =>  hal_manualtoolchange.number
+net       tool-prepare-loopback        iocontrol.0.tool-prepare      =>  iocontrol.0.tool-prepared
+
+# loadusr   pyvcp -c TsIO TsIO.xml
+
+
+
+
+

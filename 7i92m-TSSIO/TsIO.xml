@@ -1,0 +1,208 @@
+<pyvcp>
+<table flexible_rows="[7]" flexible_columns="[32]">
+    <tablerow/>
+        <rectled width="13" height="13" halpin="led-01" />
+        <rectled width="13" height="13" halpin="led-02" />
+        <rectled width="13" height="13" halpin="led-03" />
+        <rectled width="13" height="13" halpin="led-04" />
+        <rectled width="13" height="13" halpin="led-05" />
+        <rectled width="13" height="13" halpin="led-06" />
+        <rectled width="13" height="13" halpin="led-07" />
+        <rectled width="13" height="13" halpin="led-08" />
+        <rectled width="13" height="13" halpin="led-09" />
+        <rectled width="13" height="13" halpin="led-10" />
+        <rectled width="13" height="13" halpin="led-11" />
+        <rectled width="13" height="13" halpin="led-12" />
+        <rectled width="13" height="13" halpin="led-13" />
+        <rectled width="13" height="13" halpin="led-14" />
+        <rectled width="13" height="13" halpin="led-15" />
+        <rectled width="13" height="13" halpin="led-16" />
+        <rectled width="13" height="13" halpin="led-17" />
+        <rectled width="13" height="13" halpin="led-18" />
+        <rectled width="13" height="13" halpin="led-19" />
+        <rectled width="13" height="13" halpin="led-20" />
+        <rectled width="13" height="13" halpin="led-21" />
+        <rectled width="13" height="13" halpin="led-22" />
+        <rectled width="13" height="13" halpin="led-23" />
+        <rectled width="13" height="13" halpin="led-24" />
+        <rectled width="13" height="13" halpin="led-25" />
+        <rectled width="13" height="13" halpin="led-26" />
+        <rectled width="13" height="13" halpin="led-27" />
+        <rectled width="13" height="13" halpin="led-28" />
+        <rectled width="13" height="13" halpin="led-29" />
+        <rectled width="13" height="13" halpin="led-30" />
+        <rectled width="13" height="13" halpin="led-31" />
+        <rectled width="13" height="13" halpin="led-32" />
+    <tablerow/>
+        <label width="2" text="1" />
+        <label width="2" text="2" />
+        <label width="2" text="3" />
+        <label width="2" text="4" />
+        <label width="2" text="5" />
+        <label width="2" text="6" />
+        <label width="2" text="7" />
+        <label width="2" text="8" />
+        <label width="2" text="9" />
+        <label width="2" text="10" />
+        <label width="2" text="11" />
+        <label width="2" text="12" />
+        <label width="2" text="13" />
+        <label width="2" text="14" />
+        <label width="2" text="15" />
+        <label width="2" text="16" />
+        <label width="2" text="17" />
+        <label width="2" text="18" />
+        <label width="2" text="19" />
+        <label width="2" text="20" />
+        <label width="2" text="21" />
+        <label width="2" text="22" />
+        <label width="2" text="23" />
+        <label width="2" text="24" />
+        <label width="2" text="25" />
+        <label width="2" text="26" />
+        <label width="2" text="27" />
+        <label width="2" text="28" />
+        <label width="2" text="29" />
+        <label width="2" text="30" />
+        <label width="2" text="31" />
+        <label width="2" text="32" />
+    <tablerow/>
+        <checkbutton halpin="out-01" />
+        <checkbutton halpin="out-02" />
+        <checkbutton halpin="out-03" />
+        <checkbutton halpin="out-04" />
+        <checkbutton halpin="out-05" />
+        <checkbutton halpin="out-06" />
+        <checkbutton halpin="out-07" />
+        <checkbutton halpin="out-08" />
+        <checkbutton halpin="out-09" />
+        <checkbutton halpin="out-10" />
+        <checkbutton halpin="out-11" />
+        <checkbutton halpin="out-12" />
+        <checkbutton halpin="out-13" />
+        <checkbutton halpin="out-14" />
+        <checkbutton halpin="out-15" />
+        <checkbutton halpin="out-16" />
+        <checkbutton halpin="out-17" />
+        <checkbutton halpin="out-18" />
+        <checkbutton halpin="out-19" />
+        <checkbutton halpin="out-20" />
+        <checkbutton halpin="out-21" />
+        <checkbutton halpin="out-22" />
+        <checkbutton halpin="out-23" />
+        <checkbutton halpin="out-24" />
+        <checkbutton halpin="out-25" />
+        <checkbutton halpin="out-26" />
+        <checkbutton halpin="out-27" />
+        <checkbutton halpin="out-28" />
+        <checkbutton halpin="out-29" />
+        <checkbutton halpin="out-30" />
+        <checkbutton halpin="out-31" />
+        <checkbutton halpin="out-32" />
+    <tablerow/>
+        <tablespan columns="32"/>
+        <label text=" " />
+    <tablerow/>
+        <checkbutton halpin="out-33" />
+        <checkbutton halpin="out-34" />
+        <checkbutton halpin="out-35" />
+        <checkbutton halpin="out-36" />
+        <checkbutton halpin="out-37" />
+        <checkbutton halpin="out-38" />
+        <checkbutton halpin="out-39" />
+        <checkbutton halpin="out-40" />
+        <checkbutton halpin="out-41" />
+        <checkbutton halpin="out-42" />
+        <checkbutton halpin="out-43" />
+        <checkbutton halpin="out-44" />
+        <checkbutton halpin="out-45" />
+        <checkbutton halpin="out-46" />
+        <checkbutton halpin="out-47" />
+        <checkbutton halpin="out-48" />
+        <checkbutton halpin="out-49" />
+        <checkbutton halpin="out-50" />
+        <checkbutton halpin="out-51" />
+        <checkbutton halpin="out-52" />
+        <checkbutton halpin="out-53" />
+        <checkbutton halpin="out-54" />
+        <checkbutton halpin="out-55" />
+        <checkbutton halpin="out-56" />
+        <checkbutton halpin="out-57" />
+        <checkbutton halpin="out-58" />
+        <checkbutton halpin="out-59" />
+        <checkbutton halpin="out-60" />
+        <checkbutton halpin="out-61" />
+        <checkbutton halpin="out-62" />
+        <checkbutton halpin="out-63" />
+        <checkbutton halpin="out-64" />
+    <tablerow/>
+        <label text="33" />
+        <label text="34" />
+        <label text="35" />
+        <label text="36" />
+        <label text="37" />
+        <label text="38" />
+        <label text="39" />
+        <label text="40" />
+        <label text="41" />
+        <label text="42" />
+        <label text="43" />
+        <label text="44" />
+        <label text="45" />
+        <label text="46" />
+        <label text="47" />
+        <label text="48" />
+        <label text="49" />
+        <label text="50" />
+        <label text="51" />
+        <label text="52" />
+        <label text="53" />
+        <label text="54" />
+        <label text="55" />
+        <label text="56" />
+        <label text="57" />
+        <label text="58" />
+        <label text="59" />
+        <label text="60" />
+        <label text="61" />
+        <label text="62" />
+        <label text="63" />
+        <label text="64" />
+    <tablerow/>
+        <rectled width="13" height="13" halpin="led-33" />
+        <rectled width="13" height="13" halpin="led-34" />
+        <rectled width="13" height="13" halpin="led-35" />
+        <rectled width="13" height="13" halpin="led-36" />
+        <rectled width="13" height="13" halpin="led-37" />
+        <rectled width="13" height="13" halpin="led-38" />
+        <rectled width="13" height="13" halpin="led-39" />
+        <rectled width="13" height="13" halpin="led-40" />
+        <rectled width="13" height="13" halpin="led-41" />
+        <rectled width="13" height="13" halpin="led-42" />
+        <rectled width="13" height="13" halpin="led-43" />
+        <rectled width="13" height="13" halpin="led-44" />
+        <rectled width="13" height="13" halpin="led-45" />
+        <rectled width="13" height="13" halpin="led-46" />
+        <rectled width="13" height="13" halpin="led-47" />
+        <rectled width="13" height="13" halpin="led-48" />
+        <rectled width="13" height="13" halpin="led-49" />
+        <rectled width="13" height="13" halpin="led-50" />
+        <rectled width="13" height="13" halpin="led-51" />
+        <rectled width="13" height="13" halpin="led-52" />
+        <rectled width="13" height="13" halpin="led-53" />
+        <rectled width="13" height="13" halpin="led-54" />
+        <rectled width="13" height="13" halpin="led-55" />
+        <rectled width="13" height="13" halpin="led-56" />
+        <rectled width="13" height="13" halpin="led-57" />
+        <rectled width="13" height="13" halpin="led-58" />
+        <rectled width="13" height="13" halpin="led-59" />
+        <rectled width="13" height="13" halpin="led-60" />
+        <rectled width="13" height="13" halpin="led-61" />
+        <rectled width="13" height="13" halpin="led-62" />
+        <rectled width="13" height="13" halpin="led-63" />
+        <rectled width="13" height="13" halpin="led-64" />
+</table>
+</pyvcp>
+
+
+
