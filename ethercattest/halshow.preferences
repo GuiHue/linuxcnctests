@@ -1,0 +1,17 @@
+# Halshow settings
+# This file is generated automatically.
+wm geometry . 1254x475+85+246
+placeFrames 0.3
+set ::ratio 0.3
+set ::old_w_leftf 160
+set ::watchlist {
+    pin+lcec.0.BK1120.Out_220_01
+    pin+lcec.0.BK1120.Out_220_02
+}
+set ::workmode watchhal
+set ::watchInterval 100
+set ::col1_width 100
+set ::ffmts 
+set ::ifmts 
+set ::alwaysOnTop 0
+set ::autoSaveWatchlist 1
