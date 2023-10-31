@@ -1,12 +1,22 @@
 # Halshow settings
 # This file is generated automatically.
-wm geometry . 1254x475+85+246
+wm geometry . 1254x475+50+514
 placeFrames 0.3
 set ::ratio 0.3
 set ::old_w_leftf 160
 set ::watchlist {
-    pin+lcec.0.BK1120.Out_220_01
-    pin+lcec.0.BK1120.Out_220_02
+    pin+joint.1.vel-cmd
+    pin+joint.1.pos-fb
+    pin+pid.y.output
+    pin+lcec.0.3A1.enc-pos-enc
+    pin+lcec.0.3A1.srv-vel-cmd
+    pin+joint.1.f-error
+    pin+joint.1.f-error-lim
+    pin+joint.1.motor-pos-cmd
+    pin+joint.1.motor-pos-fb
+    pin+lcec.0.BK1120.Counter
+    pin+lcec.0.BK1120.Ctrl
+    pin+lcec.0.BK1120.Latch
 }
 set ::workmode watchhal
 set ::watchInterval 100
