@@ -20,7 +20,9 @@ configure: error: Failed to find Linux sources. Use --with-linux-dir!
 then
 synaptic -> linux-headers
 install for current kernel RT
-
+for linuxcnc-ethercat
+use this realtime.mk
+https://forum.linuxcnc.org/media/kunena/attachments/20660/realtime.mk.txt
 
 
 ## BK1120
