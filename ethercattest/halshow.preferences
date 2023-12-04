@@ -1,22 +1,27 @@
 # Halshow settings
 # This file is generated automatically.
-wm geometry . 1254x475+50+514
-placeFrames 0.3
-set ::ratio 0.3
+wm geometry . 991x792+143+89
+placeFrames 0.338100102145046
+set ::ratio 0.338100102145046
 set ::old_w_leftf 160
 set ::watchlist {
-    pin+joint.1.vel-cmd
-    pin+joint.1.pos-fb
+    pin+lcec.0.A3.srv-enable
+    pin+lcec.0.A3.enc-pos-enc
+    pin+lcec.0.A3.srv-ready
+    pin+lcec.0.A3.srv-vel-cmd
     pin+pid.y.output
-    pin+lcec.0.3A1.enc-pos-enc
-    pin+lcec.0.3A1.srv-vel-cmd
-    pin+joint.1.f-error
-    pin+joint.1.f-error-lim
+    pin+pid.y.feedback
+    pin+pid.y.command
     pin+joint.1.motor-pos-cmd
     pin+joint.1.motor-pos-fb
-    pin+lcec.0.BK1120.Counter
-    pin+lcec.0.BK1120.Ctrl
-    pin+lcec.0.BK1120.Latch
+    pin+joint.1.pos-cmd
+    pin+joint.1.pos-fb
+    param+lcec.0.A3.pos-scale
+    param+lcec.0.A3.extenc-scale
+    pin+lcec.0.A3.enc-raw
+    param+lcec.0.A3.srv-pulses-per-rev
+    pin+pid.y.maxerror
+    pin+lcec.0.A3.enc-pos
 }
 set ::workmode watchhal
 set ::watchInterval 100

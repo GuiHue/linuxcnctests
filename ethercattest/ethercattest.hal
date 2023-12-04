@@ -5,10 +5,11 @@ loadrt    [EMCMOT]EMCMOT servo_period_nsec=[EMCMOT]SERVO_PERIOD num_joints=[KINS
 #loadrt    hm2_eth board_ip="10.10.10.10" config="num_encoders=1 num_pwmgens=0 num_stepgens=5 sserial_port_0=222000" 
 #setp      hm2_7i92.0.watchdog.timeout_ns 50000000
 
-loadusr     -W lcec_conf ethercat-conf.xml
+loadusr     -W lcec_conf ethercat-conf2.xml
 loadrt      lcec
 loadrt cia402 count=1
 loadrt pid names=pid.x,pid.y,pid.z
+
 
 ###########################################################
 # Functions servo-thread
@@ -86,7 +87,7 @@ setp        pid.y.error-previous-target                 true
 # This setting is to limit bogus stepgen
 # velocity corrections caused by position
 # feedback sample time jitter.
-setp        pid.y.maxerror 0.012700
+setp        pid.y.maxerror 0.005
 
 net         y-index-enable                              <=> pid.y.index-enable
 net         y-enable                                    =>  pid.y.enable
@@ -95,38 +96,41 @@ net         y-pos-fb                                    =>  pid.y.feedback
 net         y-output                                    <=  pid.y.output        # this is a velocity
 
 # this is the mm per REF that is othervise known as step_scale
-setp lcec.0.3A1.pos-scale -5
-# This should not be touched. 
-#setp lcec.0.3A1.srv-pulses-per-rev 10000
+# this should include stupid factors for gearing
+setp lcec.0.A3.pos-scale 5 
+# This should not be touched for asda-a2
+
+# A3:
+# Latest test: Set Egear so that a certain number of pulses per rev is resulting (unclear how this is done with gearing)
+
+setp lcec.0.A3.srv-pulses-per-rev 10000
 # This is only relevant when an extenral encoder is being used.
-setp lcec.0.3A1.extenc-scale 1 # not used as we have not connected the scale
+setp lcec.0.A3.extenc-scale 0.001 # not used as we have not connected the scale
 
 
 # Signals to servo
 # the config below is a open loop within joint (ideal controler)
 net         y-pos-cmd                                   <= joint.1.motor-pos-cmd
 net         y-vel-cmd                                   joint.1.vel-cmd   
-#net         y-vel-cmd                                   =>  lcec.0.3A1.srv-vel-cmd 
-#net         y-pos-fb                                    => joint.1.motor-pos-fb  
+#net         y-vel-cmd                                   =>  lcec.0.A3.srv-vel-cmd 
 
-net         y-pos-fb                                    lcec.0.3A1.enc-pos-enc 
-net         y-output                                    <= lcec.0.3A1.srv-vel-cmd
+net         y-pos-fb                                    lcec.0.A3.enc-pos-enc 
+net         y-output                                    => lcec.0.A3.srv-vel-cmd
 # Joint also needs a feedback!
 net         y-pos-fb                                    joint.1.motor-pos-fb
 
-#lcec.0.3A1.enc-pos
+#lcec.0.A3.enc-pos
 net         y-enable                                    <= joint.1.amp-enable-out
-#net         y-enable                                    => [HMOT](CARD0).stepgen.00.enable
 net         y-alarm                                   joint.1.amp-fault-in
 
-net y-alarm <= lcec.0.3A1.srv-fault
+net y-alarm <= lcec.0.A3.srv-fault
+
+net y-enable => lcec.0.A3.srv-enable
 
 # Servo on
-net y-enable => lcec.0.3A1.srv-switch-on
+net y-enable => lcec.0.A3.srv-switch-on
+setp lcec.0.A3.srv-enable-volt 1
 
-setp lcec.0.3A1.srv-enable-volt 1
-
-net x-enable => lcec.0.3A1.srv-enable
 
 # ---setup home / limit switch signals---
 

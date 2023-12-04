@@ -1,0 +1,1515 @@
+2023-11-23 21:00:57,232 - qtpyvcp - INFO - Logging to /home/groot/linuxcnc/configs/probe_basic/sim.log
+2023-11-23 21:00:57,232 - qtpyvcp - INFO - QtPyVCP Version: 0+unknown
+2023-11-23 21:00:57,264 - qtpyvcp - DEBUG - Qt Version: 5.15.8
+2023-11-23 21:00:57,265 - qtpyvcp - DEBUG - Qt API: QT_API
+2023-11-23 21:00:57,265 - qtpyvcp - DEBUG - QtPy Version: 2.3.0
+2023-11-23 21:00:57,265 - qtpyvcp - DEBUG - Command line options:
+{
+    "command_line_args": null,
+    "config_file": "/home/groot/linuxcnc/configs/probe_basic/custom_config.yml",
+    "confirm_exit": false,
+    "develop": false,
+    "fullscreen": null,
+    "help": false,
+    "hide_cursor": false,
+    "hide_menu_bar": false,
+    "hide_status_bar": false,
+    "info": false,
+    "ini": "/home/groot/linuxcnc/configs/probe_basic/probe_basic.ini",
+    "log_file": "/home/groot/linuxcnc/configs/probe_basic/sim.log",
+    "log_level": "DEBUG",
+    "maximize": null,
+    "perfmon": false,
+    "position": "0x0",
+    "qt_api": null,
+    "size": null,
+    "stylesheet": null,
+    "theme": null,
+    "version": false
+}
+2023-11-23 21:00:57,635 - qtpyvcp.utilities.config_loader - DEBUG - Loading config files: ['/home/groot/linuxcnc/configs/probe_basic/custom_config.yml', '/usr/lib/python3/dist-packages/probe_basic/probe_basic.yml', '/usr/lib/python3/dist-packages/qtpyvcp/yaml_lib/default_config.yml']
+2023-11-23 21:00:57,947 - qtpyvcp.utilities.config_loader - DEBUG - Merged YAML config:
+
+default_menubar:
+- title: File
+  items:
+  - title: '&Open ...'
+    action: win.openFile
+    shortcut: ctrl+o
+  - title: '&Recent Files'
+    provider: qtpyvcp.widgets.recent_files_menu:RecentFilesMenu
+  - title: '&Reload'
+    action: program.reload
+  - title: '&Close'
+    action: program.clear
+  - title: Save &As
+    action: null
+  - separator
+  - title: Edit ToolTable
+    action: win.showDialog
+    args:
+    - tool_edit
+  - separator
+  - title: Exit
+    action: app.exit
+    shortcut: ctrl+q
+- title: Machine
+  items:
+  - title: Toggle E-Stop
+    action: machine.estop.toggle
+    shortcut: F1
+  - title: Toggle Power
+    action: machine.power.toggle
+    shortcut: F2
+  - separator
+  - title: Run Program
+    action: program.run
+    shortcut: R
+  - title: Step
+    action: program.step
+    shortcut: T
+  - title: Pause
+    action: program.pause
+    shortcut: P
+  - title: Resume
+    action: program.resume
+    shortcut: R
+  - title: Abort
+    action: program.abort
+    shortcut: esc
+  - title: Optional Stop
+    action: program.optional_stop.toggle
+  - title: Optional Skip
+    action: program.optional_skip.toggle
+  - separator
+  - title: Homing
+    provider: qtpyvcp.widgets.menus.homing_menu:HomingMenu
+  - title: Cooling
+    items:
+    - title: Flood
+      action: coolant.flood.toggle
+      shortcut: F7
+    - title: Mist
+      action: coolant.mist.toggle
+      shortcut: F8
+  - title: Set Work Offsets
+    action: win.showDialog
+    args:
+    - set_work_offsets
+  - separator
+  - title: Override Limits
+    action: machine.override_limits
+- title: Settings
+  items:
+  - title: Show On-screen Keyboard
+    action: settings.virtual-input.enable
+- title: View
+  items:
+  - title: Show Gridlines
+    action: settings.backplot.show-grid
+  - separator
+  - title: Show Machine Bounds
+    action: settings.backplot.show-machine-bounds
+  - title: Show Machine Labels
+    action: settings.backplot.show-machine-labels
+  - title: Show Machine Ticks
+    action: settings.backplot.show-machine-ticks
+  - separator
+  - title: Show Program Bounds
+    action: settings.backplot.show-program-bounds
+  - title: Use Colors for Motion type
+    action: settings.backplot.multitool-colors
+  - separator
+  - title: Perspective View
+    action: settings.backplot.perspective-view
+  - title: View Angle
+    action: settings.backplot.view
+- title: Tools
+  items:
+  - title: HAL Meter
+    action: tool.halmeter
+  - title: HAL Scope
+    action: tool.halscope
+  - title: HAL Show
+    action: tool.halshow
+  - title: LCNC Status
+    action: tool.status
+  - title: Calibration
+    action: tool.calibration
+  - title: Classicladder PLC
+    action: tool.classicladder
+  - title: Simulated Probe
+    action: tool.simulate_probe
+- title: About
+  items:
+  - title: About QtPyVCP
+    action: win.showDialog
+    args:
+    - about_qtpyvcp
+  - title: About Qt
+    action: app.aboutQt
+vcp:
+  name: Probe Basic
+  version: v0.0.1
+  author: Chris Polanski
+  description: Probe Basic description ...
+windows:
+  mainwindow:
+    provider: probe_basic.probe_basic:ProbeBasic
+    kwargs:
+      menu: &id001
+      - title: File
+        items:
+        - title: '&Open ...'
+          action: win.openFile
+          shortcut: ctrl+o
+        - title: '&Recent Files'
+          provider: qtpyvcp.widgets.recent_files_menu:RecentFilesMenu
+        - title: '&Reload'
+          action: program.reload
+        - title: '&Close'
+          action: program.clear
+        - title: Save &As
+          action: null
+        - separator
+        - title: Exit
+          action: app.exit
+          shortcut: ctrl+q
+      - title: Machine
+        items:
+        - title: Toggle E-Stop
+          action: machine.estop.toggle
+          shortcut: F1
+        - title: Toggle Power
+          action: machine.power.toggle
+          shortcut: F2
+        - separator
+        - title: Run Program
+          action: program.run
+          shortcut: R
+        - title: Step
+          action: program.step
+          shortcut: T
+        - title: Pause
+          action: program.pause
+          shortcut: P
+        - title: Resume
+          action: program.resume
+          shortcut: R
+        - title: Abort
+          action: program.abort
+          shortcut: esc
+        - title: Optional Stop
+          action: program.optional_stop.toggle
+        - title: Optional Skip
+          action: program.optional_skip.toggle
+        - separator
+        - title: Homing
+          provider: qtpyvcp.widgets.menus.homing_menu:HomingMenu
+        - title: Cooling
+          items:
+          - title: Flood
+            action: coolant.flood.toggle
+            shortcut: F7
+          - title: Mist
+            action: coolant.mist.toggle
+            shortcut: F8
+        - title: Set Work Offsets
+          action: win.showDialog
+          args:
+          - set_work_offsets
+        - separator
+        - title: Override Limits
+          action: machine.override_limits
+      - title: Settings
+        items:
+        - title: Show On-screen Keyboard
+          action: settings.virtual-input.enable
+      - title: View
+        items:
+        - title: Show Gridlines
+          action: settings.backplot.show-grid
+        - separator
+        - title: Show Machine Bounds
+          action: settings.backplot.show-machine-bounds
+        - title: Show Machine Labels
+          action: settings.backplot.show-machine-labels
+        - title: Show Machine Ticks
+          action: settings.backplot.show-machine-ticks
+        - separator
+        - title: Show Program Bounds
+          action: settings.backplot.show-program-bounds
+        - title: Show Program Labels
+          action: settings.backplot.show-program-labels
+        - title: Show Program Ticks
+          action: settings.backplot.show-program-ticks
+        - separator
+        - title: Perspective View
+          action: settings.backplot.perspective-view
+        - title: View Angle
+          action: settings.backplot.view
+      - title: Tools
+        items:
+        - title: HAL Meter
+          action: tool.halmeter
+        - title: HAL Scope
+          action: tool.halscope
+        - title: HAL Show
+          action: tool.halshow
+        - title: LCNC Status
+          action: tool.status
+        - title: Calibration
+          action: tool.calibration
+        - title: Classicladder PLC
+          action: tool.classicladder
+      - title: About
+        items:
+        - title: About Probe Basic
+          action: win.showDialog
+          args:
+          - about_probebasic
+        - title: About QtPyVCP
+          action: win.showDialog
+          args:
+          - about_qtpyvcp
+        - title: About Qt
+          action: app.aboutQt
+      fullscreen: true
+      ui_file: /usr/lib/python3/dist-packages/probe_basic/probe_basic.ui
+      confirm_exit: false
+data_plugins:
+  status:
+    provider: qtpyvcp.plugins.status:Status
+    kwargs:
+      cycle_time: 75
+  persistent_data_manager:
+    provider: qtpyvcp.plugins.persistent_data_manager:PersistentDataManager
+    kwargs:
+      serialization_method: pickle
+  settings:
+    provider: qtpyvcp.plugins.settings:Settings
+  position:
+    provider: qtpyvcp.plugins.positions:Position
+    kwargs:
+      report_actual_pos: true
+      use_program_units: true
+  tooltable:
+    provider: qtpyvcp.plugins.tool_table:ToolTable
+    kwargs:
+      columns: TXYZDR
+  offsettable:
+    provider: qtpyvcp.plugins.offset_table:OffsetTable
+  notifications:
+    provider: qtpyvcp.plugins.notifications:Notifications
+    kwargs:
+      enabled: true
+      mode: native
+      max_messages: 5
+      persistent: true
+  file_locations:
+    provider: qtpyvcp.plugins.file_locations:FileLocations
+    log_level: debug
+    kwargs:
+      default_location: NC Files
+      local_locations:
+        Home: ~/
+        Desktop: ~/Desktop
+        NC Files: ~/linuxcnc/nc_files
+      network_locations: null
+  exportedhal:
+    provider: qtpyvcp.plugins.exported_hal:ExportedHal
+  virtual_input:
+    provider: qtpyvcp.plugins.virtual_input_manager:VirtualInputManager
+dialogs:
+  open_file:
+    provider: qtpyvcp.widgets.dialogs.open_file_dialog:OpenFileDialog
+  set_work_offsets:
+    provider: qtpyvcp.widgets.dialogs.offsets_dialog:OffsetsDialog
+  tool_edit:
+    provider: qtpyvcp.widgets.dialogs.tool_edit_dialog:ToolEditDialog
+  probe_sim:
+    provider: qtpyvcp.widgets.dialogs.probesim_dialog:ProbeSim
+  about_qtpyvcp:
+    provider: qtpyvcp.widgets.dialogs.about_dialog:AboutDialog
+  toolchange:
+    provider: qtpyvcp.widgets.dialogs.toolchange_dialog:ToolChangeDialog
+    kwargs:
+      ui_file: /usr/lib/python3/dist-packages/probe_basic/toolchange_dialog_pb.ui
+  about_probebasic:
+    provider: qtpyvcp.widgets.dialogs.about_dialog:AboutDialog
+    kwargs:
+      ui_file: /usr/lib/python3/dist-packages/probe_basic/about.ui
+virtual_input_providers:
+  number:
+    provider: qtpyvcp.widgets.virtual_input.virtual_input:VirtualInput
+    kwargs:
+      ui_file: /usr/lib/python3/dist-packages/qtpyvcp/yaml_lib/../widgets/virtual_input/numpad.ui
+  text:
+    provider: qtpyvcp.widgets.virtual_input.virtual_input:VirtualInput
+    kwargs:
+      ui_file: /usr/lib/python3/dist-packages/qtpyvcp/yaml_lib/../widgets/virtual_input/keyboard.ui
+application:
+  provider: qtpyvcp.app.application:VCPApplication
+  kwargs:
+    stylesheet: /usr/lib/python3/dist-packages/probe_basic/probe_basic.qss
+    custom_fonts: /usr/lib/python3/dist-packages/probe_basic/fonts
+settings:
+  touch-probe.diameter-offset:
+    default_value: 0.123123
+    persistent: true
+    min_value: 0
+    max_value: 1
+  dro.display-units:
+    default_value: 0
+    options:
+    - Auto
+    - Inch
+    - Metric
+  dro.lathe-radius-mode:
+    default_value: 0
+    options:
+    - Auto
+    - Radius
+    - Diameter
+  dro.inch-format:
+    default_value: '%9.4f'
+    value_type: str
+  dro.millimeter-format:
+    default_value: '%9.3f'
+    value_type: str
+  dro.degree-format:
+    default_value: '%9.2f'
+  offset_table.min_range:
+    default_value: -1000
+  offset_table.max_range:
+    default_value: 1000
+  backplot.show-grid:
+    default_value: false
+  backplot.show-program-bounds:
+    default_value: false
+  backplot.show-machine-bounds:
+    default_value: false
+  backplot.show-machine-labels:
+    default_value: false
+  backplot.show-machine-ticks:
+    default_value: false
+  backplot.perspective-view:
+    default_value: false
+  backplot.view:
+    default_value: P
+    options:
+    - 'X: Front View'
+    - 'XZ: Lathe View'
+    - 'XZ2: Lathe View'
+    - 'Y: Front View'
+    - 'Z: Top View'
+    - 'Z2: Bottom View'
+    - 'P: Isometric'
+  backplot.multitool-colors:
+    default_value: true
+  touch-probe.calibration-offset:
+    description: Probe trigger point offset.
+    default_value: 0.0
+    persistent: true
+    min_value: 0
+    max_value: 1
+  probe-parameters.probe-tool-number:
+    description: probe tool number.
+    default_value: 0.0
+    persistent: true
+    min_value: 0
+    max_value: 9999
+  probe-parameters.step-off-width:
+    description: probe step off width.
+    default_value: 0.0
+    persistent: true
+    min_value: 0
+    max_value: 10000
+  probe-parameters.probe-fast-fr:
+    description: probe fast feedrate.
+    default_value: 0.0
+    persistent: true
+    min_value: 0
+    max_value: 10000
+  probe-parameters.probe-slow-fr:
+    description: probe slow feedrate.
+    default_value: 0.0
+    persistent: true
+    min_value: 0
+    max_value: 10000
+  probe-parameters.max-xy-distance:
+    description: max x and y probe travel distance.
+    default_value: 0.0
+    persistent: true
+    min_value: 0
+    max_value: 10000
+  probe-parameters.xy-clearance:
+    description: x and y clearance distance.
+    default_value: 0.0
+    persistent: true
+    min_value: 0
+    max_value: 10000
+  probe-parameters.max-z-distance:
+    description: max z probe travel distance.
+    default_value: 0.0
+    persistent: true
+    min_value: 0
+    max_value: 10000
+  probe-parameters.z-clearance:
+    description: z clearance distance.
+    default_value: 0.0
+    persistent: true
+    min_value: 0
+    max_value: 10000
+  probe-parameters.extra-probe-depth:
+    description: extra probe depth.
+    default_value: 0.0
+    persistent: true
+    min_value: -10000
+    max_value: 10000
+  probe-parameters.edge-width:
+    description: edge width probing distance.
+    default_value: 0.0
+    persistent: true
+    min_value: 0
+    max_value: 10000
+  tool-change-position.x-tool-change-position:
+    description: x axis tool change position.
+    default_value: 0.0
+    persistent: true
+    min_value: -10000
+    max_value: 10000
+  tool-change-position.y-tool-change-position:
+    description: y axis tool change position.
+    default_value: 0.0
+    persistent: true
+    min_value: -10000
+    max_value: 10000
+  tool-change-position.z-tool-change-position:
+    description: z axis tool change position.
+    default_value: 0.0
+    persistent: true
+    min_value: -10000
+    max_value: 10000
+  tool-setter-probe.fast-probe-fr:
+    description: tool probe fast feedrate.
+    default_value: 0.0
+    persistent: true
+    min_value: -10000
+    max_value: 10000
+  tool-setter-probe.slow-probe-fr:
+    description: tool probe slow feedrate.
+    default_value: 0.0
+    persistent: true
+    min_value: -10000
+    max_value: 10000
+  tool-setter-probe.z-max-travel:
+    description: maximumm z travel while probing before erroring out.
+    default_value: 0.0
+    persistent: true
+    min_value: -10000
+    max_value: 10000
+  tool-setter-probe.xy-max-travel:
+    description: maximumm xy travel while probing before erroring out.
+    default_value: 0.0
+    persistent: true
+    min_value: -10000
+    max_value: 10000
+  tool-setter-probe.retract-distance:
+    description: distance tool retracts after fast probe move.
+    default_value: 0.0
+    persistent: true
+    min_value: -10000
+    max_value: 10000
+  tool-setter-probe.spindle-nose-height:
+    description: distance from home to tool setter for the spindle nose.
+    default_value: 0.0
+    persistent: true
+    min_value: -10000
+    max_value: 10000
+  programmable-coolant.active:
+    description: activates programmable coolant with 1 as entry.
+    default_value: 0.0
+    persistent: true
+    min_value: 0
+    max_value: 1
+  programmable-coolant.spindle-to-nozzle-dist:
+    description: horizontal distance from spindle centerline to nozzle centerline.
+    default_value: 0.0
+    persistent: true
+    min_value: -10000
+    max_value: 10000
+  programmable-coolant.gaugeline-to-nozzle-dist:
+    description: vertical distance from spindle centerline to nozzle centerline.
+    default_value: 0.0
+    persistent: true
+    min_value: -10000
+    max_value: 10000
+  programmable-coolant.pc-angle-offset:
+    description: coolant nozzle offset amount to adjust for distance, pressure, gravity.
+    default_value: 0.0
+    persistent: true
+    min_value: -45
+    max_value: 45
+  backplot.show-program-labels:
+    default_value: false
+  backplot.show-program-ticks:
+    default_value: false
+menubar: *id001
+qtdesigner:
+  ui_file: /usr/lib/python3/dist-packages/probe_basic/probe_basic.ui
+  qss_file: /usr/lib/python3/dist-packages/probe_basic/probe_basic.qss
+
+
+2023-11-23 21:00:58,024 - qtpyvcp.utilities.info - INFO - The machine has 5 axes and 5 joints
+2023-11-23 21:00:58,024 - qtpyvcp.utilities.info - INFO - The Axis/Joint mapping is:
+2023-11-23 21:00:58,025 - qtpyvcp.utilities.info - INFO - Axis X --> Joint 0
+2023-11-23 21:00:58,025 - qtpyvcp.utilities.info - INFO - Axis Y --> Joint 1
+2023-11-23 21:00:58,025 - qtpyvcp.utilities.info - INFO - Axis Z --> Joint 2
+2023-11-23 21:00:58,025 - qtpyvcp.utilities.info - INFO - Axis A --> Joint 3
+2023-11-23 21:00:58,025 - qtpyvcp.utilities.info - INFO - Axis B --> Joint 4
+2023-11-23 21:00:58,025 - qtpyvcp.app.launcher - DEBUG - Time: 0.000 (+0.000) - in script
+2023-11-23 21:00:58,026 - qtpyvcp.app.launcher - DEBUG - Loading data plugings
+2023-11-23 21:00:58,026 - qtpyvcp.plugins - DEBUG - Loading plugin 'status' from 'qtpyvcp.plugins.status:Status'
+2023-11-23 21:00:58,029 - qtpyvcp.plugins.status - DEBUG - ---------set mdi_history: None, []
+2023-11-23 21:00:58,035 - qtpyvcp.plugins - DEBUG - Loading plugin 'persistent_data_manager' from 'qtpyvcp.plugins.persistent_data_manager:PersistentDataManager'
+2023-11-23 21:00:58,036 - qtpyvcp.plugins - DEBUG - Loading plugin 'settings' from 'qtpyvcp.plugins.settings:Settings'
+2023-11-23 21:00:58,037 - qtpyvcp.plugins - DEBUG - Loading plugin 'position' from 'qtpyvcp.plugins.positions:Position'
+2023-11-23 21:00:58,039 - qtpyvcp.plugins - DEBUG - Loading plugin 'tooltable' from 'qtpyvcp.plugins.tool_table:ToolTable'
+2023-11-23 21:00:58,046 - qtpyvcp.plugins - DEBUG - Loading plugin 'offsettable' from 'qtpyvcp.plugins.offset_table:OffsetTable'
+2023-11-23 21:00:58,048 - qtpyvcp.plugins - DEBUG - Loading plugin 'notifications' from 'qtpyvcp.plugins.notifications:Notifications'
+2023-11-23 21:00:58,060 - qtpyvcp.plugins - DEBUG - Loading plugin 'file_locations' from 'qtpyvcp.plugins.file_locations:FileLocations'
+2023-11-23 21:00:58,087 - qtpyvcp.plugins - DEBUG - Loading plugin 'exportedhal' from 'qtpyvcp.plugins.exported_hal:ExportedHal'
+2023-11-23 21:00:58,088 - qtpyvcp.plugins - DEBUG - Loading plugin 'virtual_input' from 'qtpyvcp.plugins.virtual_input_manager:VirtualInputManager'
+2023-11-23 21:00:58,088 - qtpyvcp.app.launcher - DEBUG - Time: 0.063 (+0.063) - done loading data plugins
+2023-11-23 21:00:58,089 - qtpyvcp.app.launcher - DEBUG - Initializing app
+2023-11-23 21:00:58,175 - qtpyvcp.plugins - DEBUG - Initializing 'status' plugin
+2023-11-23 21:00:58,176 - qtpyvcp.plugins.status - DEBUG - Starting periodic updates with 75ms cycle time
+2023-11-23 21:00:58,176 - qtpyvcp.plugins - DEBUG - Initializing 'persistent_data_manager' plugin
+2023-11-23 21:00:58,176 - qtpyvcp.plugins - DEBUG - Initializing 'settings' plugin
+2023-11-23 21:00:58,176 - qtpyvcp.plugins - DEBUG - Initializing 'position' plugin
+2023-11-23 21:00:58,176 - qtpyvcp.plugins - DEBUG - Initializing 'tooltable' plugin
+2023-11-23 21:00:58,177 - qtpyvcp.plugins - DEBUG - Initializing 'offsettable' plugin
+2023-11-23 21:00:58,177 - qtpyvcp.plugins - DEBUG - Initializing 'notifications' plugin
+2023-11-23 21:00:58,179 - qtpyvcp.plugins - DEBUG - Initializing 'file_locations' plugin
+2023-11-23 21:00:58,186 - qtpyvcp.plugins - DEBUG - Initializing 'exportedhal' plugin
+2023-11-23 21:00:58,186 - qtpyvcp.plugins.exported_hal - DEBUG - Initalizing framework exposed HAL pins
+2023-11-23 21:00:58,186 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.feed-override.reset (bit in)
+2023-11-23 21:00:58,186 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.rapid-override.reset (bit in)
+2023-11-23 21:00:58,187 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.spindle-override.reset (bit in)
+2023-11-23 21:00:58,187 - qtpyvcp.plugins - DEBUG - Initializing 'virtual_input' plugin
+2023-11-23 21:00:58,230 - qtpyvcp - INFO - Loading global stylesheet: /usr/lib/python3/dist-packages/probe_basic/probe_basic.qss
+2023-11-23 21:00:58,238 - qtpyvcp - DEBUG - Loading custom font: /usr/lib/python3/dist-packages/probe_basic/fonts/BebasKai.ttf
+2023-11-23 21:00:58,257 - qtpyvcp.app.launcher - DEBUG - Time: 0.232 (+0.168) - done initializing app
+2023-11-23 21:00:58,257 - qtpyvcp.app.launcher - DEBUG - Loading dialogs
+2023-11-23 21:00:58,462 - qtpyvcp.hal - INFO - Creating new HAL component: qtpyvcp_manualtoolchange
+2023-11-23 21:00:58,462 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp_manualtoolchange.number (s32 in)
+2023-11-23 21:00:58,462 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp_manualtoolchange.change (bit in)
+2023-11-23 21:00:58,462 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp_manualtoolchange.changed (bit out)
+2023-11-23 21:00:58,463 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp_manualtoolchange.change_button (bit in)
+2023-11-23 21:00:58,467 - qtpyvcp.app.launcher - DEBUG - Time: 0.442 (+0.210) - done loading dialogs
+2023-11-23 21:00:58,467 - qtpyvcp.app.launcher - DEBUG - Loading windows
+2023-11-23 21:00:59,791 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_backplot - DEBUG - ---------using refactored vtk code
+2023-11-23 21:00:59,792 - qtpyvcp.widgets.display_widgets.vtk_backplot.linuxcnc_datasource - DEBUG - self._status.stat.g5x_offset: <class 'tuple'>
+2023-11-23 21:00:59,792 - qtpyvcp.widgets.display_widgets.vtk_backplot.linuxcnc_datasource - DEBUG - -----current_wcs index: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+2023-11-23 21:00:59,792 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_backplot - DEBUG - ---------active_wcs_index 0
+2023-11-23 21:00:59,792 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_backplot - DEBUG - ---------active_wcs_offset (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
+2023-11-23 21:00:59,793 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_backplot - DEBUG - ---------wcs_offsets {0: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], 1: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], 2: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], 3: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], 4: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], 5: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], 6: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], 7: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], 8: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]}
+2023-11-23 21:00:59,819 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_backplot - DEBUG - ---------translate1: (0.0, 0.0, 0.0)
+2023-11-23 21:00:59,819 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_backplot - DEBUG - ---------active_wcs_offset: (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
+2023-11-23 21:00:59,881 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_backplot - DEBUG - show grid
+2023-11-23 21:00:59,884 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_backplot - DEBUG - Setting view to: P
+2023-11-23 21:01:02,198 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_backplot - DEBUG - -----setViewMachine
+2023-11-23 21:01:02,198 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_backplot - DEBUG - -----machine_bounds: (-0.001, 26.5, -0.001, 16.0, -18.0, 0.001)
+2023-11-23 21:01:02,198 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_backplot - DEBUG - -----machine_center: (13.2495, 7.9995, -8.9995)
+2023-11-23 21:01:02,199 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_backplot - DEBUG - -----x_dist: 26.501
+2023-11-23 21:01:02,199 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_backplot - DEBUG - -----y_dist: 16.001
+2023-11-23 21:01:02,199 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_backplot - DEBUG - -----z_dist: 18.001
+2023-11-23 21:01:02,207 - qtpyvcp.plugins - DEBUG - Post GUI Initializing 'status' plugin
+2023-11-23 21:01:02,207 - qtpyvcp.plugins - DEBUG - Post GUI Initializing 'persistent_data_manager' plugin
+2023-11-23 21:01:02,208 - qtpyvcp.plugins - DEBUG - Post GUI Initializing 'settings' plugin
+2023-11-23 21:01:02,208 - qtpyvcp.plugins - DEBUG - Post GUI Initializing 'position' plugin
+2023-11-23 21:01:02,208 - qtpyvcp.plugins - DEBUG - Post GUI Initializing 'tooltable' plugin
+2023-11-23 21:01:02,208 - qtpyvcp.plugins - DEBUG - Post GUI Initializing 'offsettable' plugin
+2023-11-23 21:01:02,208 - qtpyvcp.plugins - DEBUG - Post GUI Initializing 'notifications' plugin
+2023-11-23 21:01:02,208 - qtpyvcp.plugins - DEBUG - Post GUI Initializing 'file_locations' plugin
+2023-11-23 21:01:02,209 - qtpyvcp.plugins - DEBUG - Post GUI Initializing 'exportedhal' plugin
+2023-11-23 21:01:02,209 - qtpyvcp.plugins - DEBUG - Post GUI Initializing 'virtual_input' plugin
+2023-11-23 21:01:02,483 - qtpyvcp.app.launcher - DEBUG - Time: 4.457 (+4.016) - done loading windows
+2023-11-23 21:01:02,483 - qtpyvcp.app.launcher - DEBUG - Initializing widgets
+2023-11-23 21:01:02,495 - qtpyvcp.hal - DEBUG - Using existing HAL component: qtpyvcp
+2023-11-23 21:01:02,495 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.spindle-load-indicator.in-f (float in)
+2023-11-23 21:01:02,495 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.spindle-load-indicator.in-i (u32 in)
+2023-11-23 21:01:02,495 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.spindle-load-indicator.min-val (float in)
+2023-11-23 21:01:02,496 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.spindle-load-indicator.max-val (float in)
+2023-11-23 21:01:02,496 - qtpyvcp.hal - DEBUG - Using existing HAL component: qtpyvcp
+2023-11-23 21:01:02,496 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.probe-in.enable (bit in)
+2023-11-23 21:01:02,497 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.probe-in.out (bit out)
+2023-11-23 21:01:02,497 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.probe-in.io (bit io)
+2023-11-23 21:01:02,500 - qtpyvcp.hal - DEBUG - Using existing HAL component: qtpyvcp
+2023-11-23 21:01:02,500 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.spindle-encoder-rpm.enable (bit in)
+2023-11-23 21:01:02,500 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.spindle-encoder-rpm.in (float in)
+2023-11-23 21:01:02,501 - qtpyvcp.hal - DEBUG - Using existing HAL component: qtpyvcp
+2023-11-23 21:01:02,501 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.timerminutes.enable (bit in)
+2023-11-23 21:01:02,501 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.timerminutes.in (u32 in)
+2023-11-23 21:01:02,502 - qtpyvcp.hal - DEBUG - Using existing HAL component: qtpyvcp
+2023-11-23 21:01:02,502 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.timerseconds.enable (bit in)
+2023-11-23 21:01:02,502 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.timerseconds.in (u32 in)
+2023-11-23 21:01:02,632 - qtpyvcp.hal - DEBUG - Using existing HAL component: qtpyvcp
+2023-11-23 21:01:02,632 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.timerhours.enable (bit in)
+2023-11-23 21:01:02,633 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.timerhours.in (u32 in)
+2023-11-23 21:01:02,638 - qtpyvcp.hal - DEBUG - Using existing HAL component: qtpyvcp
+2023-11-23 21:01:02,639 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.probe-led.on (bit in)
+2023-11-23 21:01:02,639 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.probe-led.flash (bit in)
+2023-11-23 21:01:02,639 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.probe-led.flash-rate (u32 in)
+2023-11-23 21:01:02,641 - qtpyvcp.app.launcher - DEBUG - Time: 4.616 (+0.158) - done initializing widgets
+2023-11-23 21:01:02,641 - qtpyvcp.app.launcher - INFO - Loading POSTGUI_HALFILE: /home/groot/linuxcnc/configs/probe_basic/hallib/probe_basic_postgui.hal
+2023-11-23 21:01:05,251 - qtpyvcp.actions.machine_actions - DEBUG - Setting state ESTOP_RESET
+2023-11-23 21:01:05,403 - qtpyvcp.plugins.offset_table - DEBUG - Params file changed: /home/groot/linuxcnc/configs/probe_basic/sim.var
+2023-11-23 21:01:05,405 - qtpyvcp.plugins.status - DEBUG - Spindle_0 direction: 0
+2023-11-23 21:01:05,405 - qtpyvcp.plugins.status - DEBUG - Spindle_0 brake: 1
+2023-11-23 21:01:05,455 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_backplot - DEBUG - on_offset_table_changed
+2023-11-23 21:01:05,467 - qtpyvcp.plugins.offset_table - DEBUG - Params file changed: /home/groot/linuxcnc/configs/probe_basic/sim.var
+2023-11-23 21:01:05,518 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_backplot - DEBUG - on_offset_table_changed
+2023-11-23 21:01:05,917 - qtpyvcp.actions.machine_actions - DEBUG - Setting state ON
+2023-11-23 21:01:05,956 - qtpyvcp.plugins.status - DEBUG - JOINT_0 enabled: 1
+2023-11-23 21:01:05,956 - qtpyvcp.plugins.status - DEBUG - JOINT_1 enabled: 1
+2023-11-23 21:01:05,957 - qtpyvcp.plugins.status - DEBUG - JOINT_2 enabled: 1
+2023-11-23 21:01:05,957 - qtpyvcp.plugins.status - DEBUG - JOINT_3 enabled: 1
+2023-11-23 21:01:05,957 - qtpyvcp.plugins.status - DEBUG - JOINT_4 enabled: 1
+2023-11-23 21:01:08,561 - qtpyvcp.actions.machine_actions - INFO - Homing all axes
+2023-11-23 21:01:08,622 - qtpyvcp.plugins.status - DEBUG - JOINT_2 homing: 1
+2023-11-23 21:01:08,623 - qtpyvcp.plugins.status - DEBUG - JOINT_3 homing: 1
+2023-11-23 21:01:08,623 - qtpyvcp.plugins.status - DEBUG - JOINT_4 homing: 1
+2023-11-23 21:01:08,714 - qtpyvcp.plugins.status - DEBUG - JOINT_2 velocity: 0.02
+2023-11-23 21:01:08,715 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: 2e-05
+2023-11-23 21:01:08,715 - qtpyvcp.plugins.status - DEBUG - JOINT_2 inpos: 0
+2023-11-23 21:01:08,715 - qtpyvcp.plugins.status - DEBUG - JOINT_3 output: 0.0012
+2023-11-23 21:01:08,715 - qtpyvcp.plugins.status - DEBUG - JOINT_3 velocity: 1.2
+2023-11-23 21:01:08,715 - qtpyvcp.plugins.status - DEBUG - JOINT_3 inpos: 0
+2023-11-23 21:01:08,715 - qtpyvcp.plugins.status - DEBUG - JOINT_4 output: 0.0012
+2023-11-23 21:01:08,716 - qtpyvcp.plugins.status - DEBUG - JOINT_4 velocity: 1.2
+2023-11-23 21:01:08,716 - qtpyvcp.plugins.status - DEBUG - JOINT_4 inpos: 0
+2023-11-23 21:01:08,801 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: 0.06480000000000004
+2023-11-23 21:01:08,802 - qtpyvcp.plugins.status - DEBUG - JOINT_2 velocity: 1.620000000000001
+2023-11-23 21:01:08,802 - qtpyvcp.plugins.status - DEBUG - JOINT_2 ferror_highmark: 1.734723475976807e-18
+2023-11-23 21:01:08,802 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: 0.06642000000000003
+2023-11-23 21:01:08,802 - qtpyvcp.plugins.status - DEBUG - JOINT_3 output: 0.24060000000000017
+2023-11-23 21:01:08,803 - qtpyvcp.plugins.status - DEBUG - JOINT_3 ferror_highmark: 1.734723475976807e-18
+2023-11-23 21:01:08,803 - qtpyvcp.plugins.status - DEBUG - JOINT_3 input: 0.23760000000000017
+2023-11-23 21:01:08,803 - qtpyvcp.plugins.status - DEBUG - JOINT_3 velocity: 3.0
+2023-11-23 21:01:08,803 - qtpyvcp.plugins.status - DEBUG - JOINT_4 output: 0.24060000000000017
+2023-11-23 21:01:08,803 - qtpyvcp.plugins.status - DEBUG - JOINT_4 ferror_highmark: 1.734723475976807e-18
+2023-11-23 21:01:08,803 - qtpyvcp.plugins.status - DEBUG - JOINT_4 input: 0.23760000000000017
+2023-11-23 21:01:08,804 - qtpyvcp.plugins.status - DEBUG - JOINT_4 velocity: 3.0
+2023-11-23 21:01:08,876 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: 0.23250000000000015
+2023-11-23 21:01:08,877 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: 0.22950000000000015
+2023-11-23 21:01:08,877 - qtpyvcp.plugins.status - DEBUG - JOINT_2 velocity: 3.0
+2023-11-23 21:01:08,877 - qtpyvcp.plugins.status - DEBUG - JOINT_3 ferror_highmark: 2.7755575615628914e-17
+2023-11-23 21:01:08,878 - qtpyvcp.plugins.status - DEBUG - JOINT_3 input: 0.45060000000000033
+2023-11-23 21:01:08,878 - qtpyvcp.plugins.status - DEBUG - JOINT_3 output: 0.45360000000000034
+2023-11-23 21:01:08,878 - qtpyvcp.plugins.status - DEBUG - JOINT_4 ferror_highmark: 2.7755575615628914e-17
+2023-11-23 21:01:08,878 - qtpyvcp.plugins.status - DEBUG - JOINT_4 input: 0.45060000000000033
+2023-11-23 21:01:08,878 - qtpyvcp.plugins.status - DEBUG - JOINT_4 output: 0.45360000000000034
+2023-11-23 21:01:08,949 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: 0.46950000000000036
+2023-11-23 21:01:08,949 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: 0.47250000000000036
+2023-11-23 21:01:08,950 - qtpyvcp.plugins.status - DEBUG - JOINT_3 output: 0.6936000000000005
+2023-11-23 21:01:08,950 - qtpyvcp.plugins.status - DEBUG - JOINT_3 ferror_highmark: 5.551115123125783e-17
+2023-11-23 21:01:08,950 - qtpyvcp.plugins.status - DEBUG - JOINT_3 input: 0.6906000000000005
+2023-11-23 21:01:08,950 - qtpyvcp.plugins.status - DEBUG - JOINT_4 output: 0.6936000000000005
+2023-11-23 21:01:08,951 - qtpyvcp.plugins.status - DEBUG - JOINT_4 ferror_highmark: 5.551115123125783e-17
+2023-11-23 21:01:08,951 - qtpyvcp.plugins.status - DEBUG - JOINT_4 input: 0.6906000000000005
+2023-11-23 21:01:09,024 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: 0.6825000000000006
+2023-11-23 21:01:09,024 - qtpyvcp.plugins.status - DEBUG - JOINT_2 ferror_highmark: 5.551115123125783e-17
+2023-11-23 21:01:09,024 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: 0.6855000000000006
+2023-11-23 21:01:09,024 - qtpyvcp.plugins.status - DEBUG - JOINT_3 output: 0.9066000000000007
+2023-11-23 21:01:09,025 - qtpyvcp.plugins.status - DEBUG - JOINT_3 input: 0.9036000000000007
+2023-11-23 21:01:09,025 - qtpyvcp.plugins.status - DEBUG - JOINT_4 output: 0.9066000000000007
+2023-11-23 21:01:09,025 - qtpyvcp.plugins.status - DEBUG - JOINT_4 input: 0.9036000000000007
+2023-11-23 21:01:09,099 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: 0.8955000000000007
+2023-11-23 21:01:09,099 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: 0.8925000000000007
+2023-11-23 21:01:09,099 - qtpyvcp.plugins.status - DEBUG - JOINT_3 input: 1.1135999999999968
+2023-11-23 21:01:09,099 - qtpyvcp.plugins.status - DEBUG - JOINT_3 output: 1.1165999999999967
+2023-11-23 21:01:09,100 - qtpyvcp.plugins.status - DEBUG - JOINT_4 input: 1.1135999999999968
+2023-11-23 21:01:09,100 - qtpyvcp.plugins.status - DEBUG - JOINT_4 output: 1.1165999999999967
+2023-11-23 21:01:09,175 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: 1.1384999999999958
+2023-11-23 21:01:09,176 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: 1.135499999999996
+2023-11-23 21:01:09,177 - qtpyvcp.plugins.status - DEBUG - JOINT_3 input: 1.356599999999988
+2023-11-23 21:01:09,177 - qtpyvcp.plugins.status - DEBUG - JOINT_3 output: 1.359599999999988
+2023-11-23 21:01:09,178 - qtpyvcp.plugins.status - DEBUG - JOINT_4 input: 1.356599999999988
+2023-11-23 21:01:09,178 - qtpyvcp.plugins.status - DEBUG - JOINT_4 output: 1.359599999999988
+2023-11-23 21:01:09,249 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: 1.3454999999999884
+2023-11-23 21:01:09,249 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: 1.3484999999999883
+2023-11-23 21:01:09,249 - qtpyvcp.plugins.status - DEBUG - JOINT_3 input: 1.5665999999999805
+2023-11-23 21:01:09,250 - qtpyvcp.plugins.status - DEBUG - JOINT_3 output: 1.5695999999999803
+2023-11-23 21:01:09,250 - qtpyvcp.plugins.status - DEBUG - JOINT_4 input: 1.5665999999999805
+2023-11-23 21:01:09,250 - qtpyvcp.plugins.status - DEBUG - JOINT_4 output: 1.5695999999999803
+2023-11-23 21:01:09,327 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: 1.5884999999999796
+2023-11-23 21:01:09,327 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: 1.5914999999999795
+2023-11-23 21:01:09,327 - qtpyvcp.plugins.status - DEBUG - JOINT_3 output: 1.8125999999999716
+2023-11-23 21:01:09,328 - qtpyvcp.plugins.status - DEBUG - JOINT_3 input: 1.8095999999999717
+2023-11-23 21:01:09,328 - qtpyvcp.plugins.status - DEBUG - JOINT_4 output: 1.8125999999999716
+2023-11-23 21:01:09,328 - qtpyvcp.plugins.status - DEBUG - JOINT_4 input: 1.8095999999999717
+2023-11-23 21:01:09,399 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: 1.798499999999972
+2023-11-23 21:01:09,399 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: 1.801499999999972
+2023-11-23 21:01:09,400 - qtpyvcp.plugins.status - DEBUG - JOINT_3 inpos: 1
+2023-11-23 21:01:09,400 - qtpyvcp.plugins.status - DEBUG - JOINT_3 input: 1.0024000000000002
+2023-11-23 21:01:09,400 - qtpyvcp.plugins.status - DEBUG - JOINT_3 ferror_highmark: 2.220446049250313e-16
+2023-11-23 21:01:09,400 - qtpyvcp.plugins.status - DEBUG - JOINT_3 ferror_current: -2.220446049250313e-16
+2023-11-23 21:01:09,400 - qtpyvcp.plugins.status - DEBUG - JOINT_3 velocity: 0.0
+2023-11-23 21:01:09,400 - qtpyvcp.plugins.status - DEBUG - JOINT_3 output: 1.0024
+2023-11-23 21:01:09,401 - qtpyvcp.plugins.status - DEBUG - JOINT_4 inpos: 1
+2023-11-23 21:01:09,401 - qtpyvcp.plugins.status - DEBUG - JOINT_4 input: 1.0024000000000002
+2023-11-23 21:01:09,401 - qtpyvcp.plugins.status - DEBUG - JOINT_4 ferror_highmark: 2.220446049250313e-16
+2023-11-23 21:01:09,401 - qtpyvcp.plugins.status - DEBUG - JOINT_4 ferror_current: -2.220446049250313e-16
+2023-11-23 21:01:09,401 - qtpyvcp.plugins.status - DEBUG - JOINT_4 velocity: 0.0
+2023-11-23 21:01:09,401 - qtpyvcp.plugins.status - DEBUG - JOINT_4 output: 1.0024
+2023-11-23 21:01:09,476 - qtpyvcp.plugins.status - DEBUG - JOINT_2 velocity: 2.78
+2023-11-23 21:01:09,477 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: 1.03168
+2023-11-23 21:01:09,477 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: 1.0289000000000001
+2023-11-23 21:01:09,477 - qtpyvcp.plugins.status - DEBUG - JOINT_2 ferror_highmark: 2.220446049250313e-16
+2023-11-23 21:01:09,477 - qtpyvcp.plugins.status - DEBUG - JOINT_2 ferror_current: -2.220446049250313e-16
+2023-11-23 21:01:09,551 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: 1.17658
+2023-11-23 21:01:09,552 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: 1.1752000000000002
+2023-11-23 21:01:09,552 - qtpyvcp.plugins.status - DEBUG - JOINT_2 velocity: 1.3799999999999986
+2023-11-23 21:01:09,552 - qtpyvcp.plugins.status - DEBUG - JOINT_3 input: 0.9783999999999999
+2023-11-23 21:01:09,552 - qtpyvcp.plugins.status - DEBUG - JOINT_3 ferror_current: -1.1102230246251565e-16
+2023-11-23 21:01:09,553 - qtpyvcp.plugins.status - DEBUG - JOINT_3 output: 0.9783999999999998
+2023-11-23 21:01:09,553 - qtpyvcp.plugins.status - DEBUG - JOINT_4 input: 0.9783999999999999
+2023-11-23 21:01:09,553 - qtpyvcp.plugins.status - DEBUG - JOINT_4 ferror_current: -1.1102230246251565e-16
+2023-11-23 21:01:09,553 - qtpyvcp.plugins.status - DEBUG - JOINT_4 output: 0.9783999999999998
+2023-11-23 21:01:09,626 - qtpyvcp.plugins.status - DEBUG - JOINT_2 inpos: 1
+2023-11-23 21:01:09,626 - qtpyvcp.plugins.status - DEBUG - JOINT_2 ferror_current: 0.0
+2023-11-23 21:01:09,627 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: 1.2234999999999996
+2023-11-23 21:01:09,627 - qtpyvcp.plugins.status - DEBUG - JOINT_2 velocity: 0.0
+2023-11-23 21:01:09,627 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: 1.2234999999999996
+2023-11-23 21:01:09,628 - qtpyvcp.plugins.status - DEBUG - JOINT_3 input: 0.9825999999999993
+2023-11-23 21:01:09,628 - qtpyvcp.plugins.status - DEBUG - JOINT_3 velocity: 0.2
+2023-11-23 21:01:09,628 - qtpyvcp.plugins.status - DEBUG - JOINT_3 inpos: 0
+2023-11-23 21:01:09,628 - qtpyvcp.plugins.status - DEBUG - JOINT_3 output: 0.9827999999999993
+2023-11-23 21:01:09,628 - qtpyvcp.plugins.status - DEBUG - JOINT_3 ferror_current: 1.1102230246251565e-16
+2023-11-23 21:01:09,629 - qtpyvcp.plugins.status - DEBUG - JOINT_4 input: 0.9825999999999993
+2023-11-23 21:01:09,629 - qtpyvcp.plugins.status - DEBUG - JOINT_4 velocity: 0.2
+2023-11-23 21:01:09,629 - qtpyvcp.plugins.status - DEBUG - JOINT_4 inpos: 0
+2023-11-23 21:01:09,629 - qtpyvcp.plugins.status - DEBUG - JOINT_4 output: 0.9827999999999993
+2023-11-23 21:01:09,629 - qtpyvcp.plugins.status - DEBUG - JOINT_4 ferror_current: 1.1102230246251565e-16
+2023-11-23 21:01:09,702 - qtpyvcp.plugins.status - DEBUG - JOINT_3 output: 0.9967999999999978
+2023-11-23 21:01:09,702 - qtpyvcp.plugins.status - DEBUG - JOINT_3 input: 0.9965999999999977
+2023-11-23 21:01:09,703 - qtpyvcp.plugins.status - DEBUG - JOINT_4 output: 0.9967999999999978
+2023-11-23 21:01:09,703 - qtpyvcp.plugins.status - DEBUG - JOINT_4 input: 0.9965999999999977
+2023-11-23 21:01:09,789 - qtpyvcp.plugins.status - DEBUG - JOINT_2 ferror_current: 2.220446049250313e-16
+2023-11-23 21:01:09,789 - qtpyvcp.plugins.status - DEBUG - JOINT_2 inpos: 0
+2023-11-23 21:01:09,789 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: 1.1831799999999997
+2023-11-23 21:01:09,789 - qtpyvcp.plugins.status - DEBUG - JOINT_2 velocity: -1.2600000000000007
+2023-11-23 21:01:09,790 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: 1.1844399999999995
+2023-11-23 21:01:09,790 - qtpyvcp.plugins.status - DEBUG - JOINT_3 input: 3.0545264095849234e-09
+2023-11-23 21:01:09,790 - qtpyvcp.plugins.status - DEBUG - JOINT_3 inpos: 1
+2023-11-23 21:01:09,790 - qtpyvcp.plugins.status - DEBUG - JOINT_3 homing: 0
+2023-11-23 21:01:09,790 - qtpyvcp.plugins.status - DEBUG - JOINT_3 homed: 1
+2023-11-23 21:01:09,790 - qtpyvcp.plugins.status - DEBUG - JOINT_3 ferror_current: -8.579130854617818e-17
+2023-11-23 21:01:09,791 - qtpyvcp.plugins.status - DEBUG - JOINT_3 velocity: 0.0
+2023-11-23 21:01:09,791 - qtpyvcp.plugins.status - DEBUG - JOINT_3 output: 3.054526323793615e-09
+2023-11-23 21:01:09,791 - qtpyvcp.plugins.status - DEBUG - JOINT_4 input: 3.0545264095849234e-09
+2023-11-23 21:01:09,791 - qtpyvcp.plugins.status - DEBUG - JOINT_4 inpos: 1
+2023-11-23 21:01:09,791 - qtpyvcp.plugins.status - DEBUG - JOINT_4 homing: 0
+2023-11-23 21:01:09,791 - qtpyvcp.plugins.status - DEBUG - JOINT_4 homed: 1
+2023-11-23 21:01:09,791 - qtpyvcp.plugins.status - DEBUG - JOINT_4 ferror_current: -8.579130854617818e-17
+2023-11-23 21:01:09,792 - qtpyvcp.plugins.status - DEBUG - JOINT_4 velocity: 0.0
+2023-11-23 21:01:09,792 - qtpyvcp.plugins.status - DEBUG - JOINT_4 output: 3.054526323793615e-09
+2023-11-23 21:01:09,851 - qtpyvcp.plugins.status - DEBUG - JOINT_2 ferror_current: 0.0
+2023-11-23 21:01:09,851 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: 1.0452799999999995
+2023-11-23 21:01:09,852 - qtpyvcp.plugins.status - DEBUG - JOINT_2 velocity: -2.660000000000002
+2023-11-23 21:01:09,852 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: 1.0479399999999996
+2023-11-23 21:01:09,927 - qtpyvcp.plugins.status - DEBUG - JOINT_2 ferror_highmark: 3.3306690738754696e-16
+2023-11-23 21:01:09,927 - qtpyvcp.plugins.status - DEBUG - JOINT_2 ferror_current: -1.1102230246251565e-16
+2023-11-23 21:01:09,927 - qtpyvcp.plugins.status - DEBUG - JOINT_2 velocity: -2.039999999999999
+2023-11-23 21:01:09,928 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: 0.8605599999999998
+2023-11-23 21:01:09,928 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: 0.8585199999999996
+2023-11-23 21:01:09,999 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: 0.7605599999999999
+2023-11-23 21:01:09,999 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: 0.7601199999999998
+2023-11-23 21:01:09,999 - qtpyvcp.plugins.status - DEBUG - JOINT_2 velocity: -0.4399999999999977
+2023-11-23 21:01:10,077 - qtpyvcp.plugins.status - DEBUG - JOINT_2 inpos: 1
+2023-11-23 21:01:10,077 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: 0.7555000000000001
+2023-11-23 21:01:10,077 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: 0.7554999999999998
+2023-11-23 21:01:10,078 - qtpyvcp.plugins.status - DEBUG - JOINT_2 ferror_current: -2.220446049250313e-16
+2023-11-23 21:01:10,078 - qtpyvcp.plugins.status - DEBUG - JOINT_2 velocity: 0.0
+2023-11-23 21:01:10,151 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: 0.7603999999999994
+2023-11-23 21:01:10,152 - qtpyvcp.plugins.status - DEBUG - JOINT_2 ferror_current: -1.1102230246251565e-16
+2023-11-23 21:01:10,152 - qtpyvcp.plugins.status - DEBUG - JOINT_2 velocity: 0.2
+2023-11-23 21:01:10,152 - qtpyvcp.plugins.status - DEBUG - JOINT_2 inpos: 0
+2023-11-23 21:01:10,152 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: 0.7601999999999995
+2023-11-23 21:01:10,228 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: 0.7743999999999978
+2023-11-23 21:01:10,228 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: 0.7745999999999978
+2023-11-23 21:01:10,228 - qtpyvcp.plugins.status - DEBUG - JOINT_2 ferror_current: 1.1102230246251565e-16
+2023-11-23 21:01:10,299 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: 0.7905999999999961
+2023-11-23 21:01:10,299 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: 0.790399999999996
+2023-11-23 21:01:10,374 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: 0.8047999999999945
+2023-11-23 21:01:10,375 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: 0.8045999999999944
+2023-11-23 21:01:10,450 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: 0.8205999999999927
+2023-11-23 21:01:10,450 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: 0.8207999999999928
+2023-11-23 21:01:10,525 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: 0.8349999999999912
+2023-11-23 21:01:10,525 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: 0.8347999999999911
+2023-11-23 21:01:10,599 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: 0.8507999999999893
+2023-11-23 21:01:10,600 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: 0.8509999999999894
+2023-11-23 21:01:10,674 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: 0.8651999999999879
+2023-11-23 21:01:10,674 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: 0.8649999999999878
+2023-11-23 21:01:10,748 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: 0.8789999999999862
+2023-11-23 21:01:10,749 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: 0.8791999999999863
+2023-11-23 21:01:10,828 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: 0.8953999999999845
+2023-11-23 21:01:10,829 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: 0.8951999999999845
+2023-11-23 21:01:10,901 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: 0.909399999999983
+2023-11-23 21:01:10,902 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: 0.9091999999999829
+2023-11-23 21:01:10,974 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: 0.9231999999999814
+2023-11-23 21:01:10,974 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: 0.9233999999999815
+2023-11-23 21:01:11,049 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: 0.9395999999999797
+2023-11-23 21:01:11,049 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: 0.9393999999999796
+2023-11-23 21:01:11,126 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: 0.953399999999978
+2023-11-23 21:01:11,127 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: 0.9535999999999781
+2023-11-23 21:01:11,198 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: 0.9697999999999763
+2023-11-23 21:01:11,199 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: 0.9695999999999763
+2023-11-23 21:01:11,273 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: 0.9855999999999745
+2023-11-23 21:01:11,274 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: 0.9857999999999746
+2023-11-23 21:01:11,348 - qtpyvcp.plugins.status - DEBUG - JOINT_2 ferror_current: 2.220446049250313e-16
+2023-11-23 21:01:11,349 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: 1.0008399999999997
+2023-11-23 21:01:11,349 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: 1.00078
+2023-11-23 21:01:11,349 - qtpyvcp.plugins.status - DEBUG - JOINT_2 velocity: -0.06
+2023-11-23 21:01:11,424 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: 0.9483400000000002
+2023-11-23 21:01:11,424 - qtpyvcp.plugins.status - DEBUG - JOINT_2 ferror_current: -1.1102230246251565e-16
+2023-11-23 21:01:11,424 - qtpyvcp.plugins.status - DEBUG - JOINT_2 velocity: -1.4600000000000009
+2023-11-23 21:01:11,424 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: 0.94688
+2023-11-23 21:01:11,499 - qtpyvcp.plugins.status - DEBUG - JOINT_2 ferror_current: -2.220446049250313e-16
+2023-11-23 21:01:11,499 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: 0.7652800000000002
+2023-11-23 21:01:11,499 - qtpyvcp.plugins.status - DEBUG - JOINT_2 velocity: -3.0800000000000023
+2023-11-23 21:01:11,499 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: 0.7622
+2023-11-23 21:01:11,574 - qtpyvcp.plugins.status - DEBUG - JOINT_2 ferror_current: 0.0
+2023-11-23 21:01:11,574 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: 0.5013799999999999
+2023-11-23 21:01:11,574 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: 0.496921652090335
+2023-11-23 21:01:11,575 - qtpyvcp.plugins.status - DEBUG - JOINT_2 velocity: -4.458347909664902
+2023-11-23 21:01:11,649 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: 0.20488741208469863
+2023-11-23 21:01:11,649 - qtpyvcp.plugins.status - DEBUG - JOINT_2 velocity: -2.8428476179126156
+2023-11-23 21:01:11,649 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: 0.20204456446678584
+2023-11-23 21:01:11,649 - qtpyvcp.plugins.status - DEBUG - JOINT_2 ferror_current: -1.6653345369377348e-16
+2023-11-23 21:01:11,724 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: 0.05253226197711751
+2023-11-23 21:01:11,724 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: 0.05398184484093904
+2023-11-23 21:01:11,724 - qtpyvcp.plugins.status - DEBUG - JOINT_2 ferror_current: -1.1796119636642288e-16
+2023-11-23 21:01:11,725 - qtpyvcp.plugins.status - DEBUG - JOINT_2 velocity: -1.4495828638214168
+2023-11-23 21:01:11,812 - qtpyvcp.plugins.status - DEBUG - JOINT_0 homing: 1
+2023-11-23 21:01:11,813 - qtpyvcp.plugins.status - DEBUG - JOINT_1 homing: 1
+2023-11-23 21:01:11,813 - qtpyvcp.plugins.status - DEBUG - JOINT_2 ferror_current: -1.0305119303326065e-16
+2023-11-23 21:01:11,813 - qtpyvcp.plugins.status - DEBUG - JOINT_2 inpos: 1
+2023-11-23 21:01:11,813 - qtpyvcp.plugins.status - DEBUG - JOINT_2 homing: 0
+2023-11-23 21:01:11,813 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: 9.315381133134792e-09
+2023-11-23 21:01:11,814 - qtpyvcp.plugins.status - DEBUG - JOINT_2 homed: 1
+2023-11-23 21:01:11,814 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: 9.3153810300836e-09
+2023-11-23 21:01:11,814 - qtpyvcp.plugins.status - DEBUG - JOINT_2 velocity: 0.0
+2023-11-23 21:01:11,952 - qtpyvcp.plugins.status - DEBUG - JOINT_0 output: 0.028620000000000013
+2023-11-23 21:01:11,952 - qtpyvcp.plugins.status - DEBUG - JOINT_0 velocity: 1.0600000000000005
+2023-11-23 21:01:11,952 - qtpyvcp.plugins.status - DEBUG - JOINT_0 inpos: 0
+2023-11-23 21:01:11,953 - qtpyvcp.plugins.status - DEBUG - JOINT_0 ferror_highmark: 1.734723475976807e-18
+2023-11-23 21:01:11,953 - qtpyvcp.plugins.status - DEBUG - JOINT_0 input: 0.02756000000000001
+2023-11-23 21:01:11,953 - qtpyvcp.plugins.status - DEBUG - JOINT_1 output: 0.028620000000000013
+2023-11-23 21:01:11,953 - qtpyvcp.plugins.status - DEBUG - JOINT_1 velocity: 1.0600000000000005
+2023-11-23 21:01:11,953 - qtpyvcp.plugins.status - DEBUG - JOINT_1 inpos: 0
+2023-11-23 21:01:11,954 - qtpyvcp.plugins.status - DEBUG - JOINT_1 ferror_highmark: 1.734723475976807e-18
+2023-11-23 21:01:11,954 - qtpyvcp.plugins.status - DEBUG - JOINT_1 input: 0.02756000000000001
+2023-11-23 21:01:12,024 - qtpyvcp.plugins.status - DEBUG - JOINT_0 input: 0.15006000000000008
+2023-11-23 21:01:12,024 - qtpyvcp.plugins.status - DEBUG - JOINT_0 velocity: 2.4600000000000017
+2023-11-23 21:01:12,024 - qtpyvcp.plugins.status - DEBUG - JOINT_0 output: 0.15252000000000007
+2023-11-23 21:01:12,024 - qtpyvcp.plugins.status - DEBUG - JOINT_1 input: 0.15006000000000008
+2023-11-23 21:01:12,025 - qtpyvcp.plugins.status - DEBUG - JOINT_1 velocity: 2.4600000000000017
+2023-11-23 21:01:12,025 - qtpyvcp.plugins.status - DEBUG - JOINT_1 output: 0.15252000000000007
+2023-11-23 21:01:12,101 - qtpyvcp.plugins.status - DEBUG - JOINT_0 output: 0.35850000000000026
+2023-11-23 21:01:12,102 - qtpyvcp.plugins.status - DEBUG - JOINT_0 input: 0.35550000000000026
+2023-11-23 21:01:12,102 - qtpyvcp.plugins.status - DEBUG - JOINT_0 velocity: 3.0
+2023-11-23 21:01:12,102 - qtpyvcp.plugins.status - DEBUG - JOINT_1 output: 0.35850000000000026
+2023-11-23 21:01:12,103 - qtpyvcp.plugins.status - DEBUG - JOINT_1 input: 0.35550000000000026
+2023-11-23 21:01:12,103 - qtpyvcp.plugins.status - DEBUG - JOINT_1 velocity: 3.0
+2023-11-23 21:01:12,174 - qtpyvcp.plugins.status - DEBUG - JOINT_0 input: 0.5955000000000005
+2023-11-23 21:01:12,174 - qtpyvcp.plugins.status - DEBUG - JOINT_0 ferror_highmark: 5.551115123125783e-17
+2023-11-23 21:01:12,174 - qtpyvcp.plugins.status - DEBUG - JOINT_0 output: 0.5985000000000005
+2023-11-23 21:01:12,175 - qtpyvcp.plugins.status - DEBUG - JOINT_1 ferror_highmark: 1.1102230246251565e-16
+2023-11-23 21:01:12,175 - qtpyvcp.plugins.status - DEBUG - JOINT_1 velocity: 2.3999999999999995
+2023-11-23 21:01:12,175 - qtpyvcp.plugins.status - DEBUG - JOINT_1 ferror_current: -4.163336342344337e-17
+2023-11-23 21:01:12,175 - qtpyvcp.plugins.status - DEBUG - JOINT_1 output: 0.0807
+2023-11-23 21:01:12,175 - qtpyvcp.plugins.status - DEBUG - JOINT_1 input: 0.07830000000000004
+2023-11-23 21:01:12,249 - qtpyvcp.plugins.status - DEBUG - JOINT_0 input: 0.8085000000000007
+2023-11-23 21:01:12,249 - qtpyvcp.plugins.status - DEBUG - JOINT_0 output: 0.8115000000000007
+2023-11-23 21:01:12,249 - qtpyvcp.plugins.status - DEBUG - JOINT_1 ferror_current: -2.7755575615628914e-17
+2023-11-23 21:01:12,249 - qtpyvcp.plugins.status - DEBUG - JOINT_1 output: 0.19997999999999994
+2023-11-23 21:01:12,250 - qtpyvcp.plugins.status - DEBUG - JOINT_1 velocity: 0.9799999999999982
+2023-11-23 21:01:12,250 - qtpyvcp.plugins.status - DEBUG - JOINT_1 input: 0.19899999999999995
+2023-11-23 21:01:12,324 - qtpyvcp.plugins.status - DEBUG - JOINT_0 input: 0.03717999999999999
+2023-11-23 21:01:12,324 - qtpyvcp.plugins.status - DEBUG - JOINT_0 ferror_highmark: 1.6566609195578508e-16
+2023-11-23 21:01:12,324 - qtpyvcp.plugins.status - DEBUG - JOINT_0 output: 0.0399
+2023-11-23 21:01:12,325 - qtpyvcp.plugins.status - DEBUG - JOINT_0 ferror_current: 6.938893903907228e-18
+2023-11-23 21:01:12,325 - qtpyvcp.plugins.status - DEBUG - JOINT_0 velocity: 2.7199999999999998
+2023-11-23 21:01:12,325 - qtpyvcp.plugins.status - DEBUG - JOINT_1 output: 0.22349999999999984
+2023-11-23 21:01:12,325 - qtpyvcp.plugins.status - DEBUG - JOINT_1 input: 0.22349999999999992
+2023-11-23 21:01:12,325 - qtpyvcp.plugins.status - DEBUG - JOINT_1 ferror_current: -8.326672684688674e-17
+2023-11-23 21:01:12,325 - qtpyvcp.plugins.status - DEBUG - JOINT_1 inpos: 1
+2023-11-23 21:01:12,326 - qtpyvcp.plugins.status - DEBUG - JOINT_1 velocity: 0.0
+2023-11-23 21:01:12,399 - qtpyvcp.plugins.status - DEBUG - JOINT_0 input: 0.18059999999999987
+2023-11-23 21:01:12,399 - qtpyvcp.plugins.status - DEBUG - JOINT_0 velocity: 1.2999999999999985
+2023-11-23 21:01:12,399 - qtpyvcp.plugins.status - DEBUG - JOINT_0 ferror_highmark: 1.6653345369377348e-16
+2023-11-23 21:01:12,399 - qtpyvcp.plugins.status - DEBUG - JOINT_0 output: 0.18189999999999995
+2023-11-23 21:01:12,399 - qtpyvcp.plugins.status - DEBUG - JOINT_0 ferror_current: 8.326672684688674e-17
+2023-11-23 21:01:12,400 - qtpyvcp.plugins.status - DEBUG - JOINT_1 inpos: 0
+2023-11-23 21:01:12,400 - qtpyvcp.plugins.status - DEBUG - JOINT_1 ferror_current: 5.551115123125783e-17
+2023-11-23 21:01:12,400 - qtpyvcp.plugins.status - DEBUG - JOINT_1 input: 0.2234799999999998
+2023-11-23 21:01:12,400 - qtpyvcp.plugins.status - DEBUG - JOINT_1 output: 0.22343999999999983
+2023-11-23 21:01:12,400 - qtpyvcp.plugins.status - DEBUG - JOINT_1 velocity: -0.04
+2023-11-23 21:01:12,473 - qtpyvcp.plugins.status - DEBUG - JOINT_0 output: 0.22349999999999984
+2023-11-23 21:01:12,474 - qtpyvcp.plugins.status - DEBUG - JOINT_0 inpos: 1
+2023-11-23 21:01:12,474 - qtpyvcp.plugins.status - DEBUG - JOINT_0 ferror_current: 2.7755575615628914e-17
+2023-11-23 21:01:12,474 - qtpyvcp.plugins.status - DEBUG - JOINT_0 input: 0.2234999999999998
+2023-11-23 21:01:12,474 - qtpyvcp.plugins.status - DEBUG - JOINT_0 velocity: 0.0
+2023-11-23 21:01:12,474 - qtpyvcp.plugins.status - DEBUG - JOINT_1 ferror_current: 0.0
+2023-11-23 21:01:12,475 - qtpyvcp.plugins.status - DEBUG - JOINT_1 input: 0.15707999999999978
+2023-11-23 21:01:12,475 - qtpyvcp.plugins.status - DEBUG - JOINT_1 velocity: -1.640000000000001
+2023-11-23 21:01:12,475 - qtpyvcp.plugins.status - DEBUG - JOINT_1 output: 0.15543999999999977
+2023-11-23 21:01:12,548 - qtpyvcp.plugins.status - DEBUG - JOINT_1 input: -0.009000000000000397
+2023-11-23 21:01:12,549 - qtpyvcp.plugins.status - DEBUG - JOINT_1 output: -0.012000000000000326
+2023-11-23 21:01:12,549 - qtpyvcp.plugins.status - DEBUG - JOINT_1 ferror_current: 6.938893903907228e-17
+2023-11-23 21:01:12,549 - qtpyvcp.plugins.status - DEBUG - JOINT_1 velocity: -3.0
+2023-11-23 21:01:12,624 - qtpyvcp.plugins.status - DEBUG - JOINT_0 ferror_current: -8.326672684688674e-17
+2023-11-23 21:01:12,624 - qtpyvcp.plugins.status - DEBUG - JOINT_0 velocity: -1.3200000000000007
+2023-11-23 21:01:12,624 - qtpyvcp.plugins.status - DEBUG - JOINT_0 input: 0.18059999999999987
+2023-11-23 21:01:12,624 - qtpyvcp.plugins.status - DEBUG - JOINT_0 output: 0.1792799999999998
+2023-11-23 21:01:12,625 - qtpyvcp.plugins.status - DEBUG - JOINT_0 inpos: 0
+2023-11-23 21:01:12,625 - qtpyvcp.plugins.status - DEBUG - JOINT_1 output: -0.19038000000000027
+2023-11-23 21:01:12,625 - qtpyvcp.plugins.status - DEBUG - JOINT_1 input: -0.18894000000000033
+2023-11-23 21:01:12,625 - qtpyvcp.plugins.status - DEBUG - JOINT_1 velocity: -1.4399999999999986
+2023-11-23 21:01:12,625 - qtpyvcp.plugins.status - DEBUG - JOINT_1 ferror_current: 5.551115123125783e-17
+2023-11-23 21:01:12,698 - qtpyvcp.plugins.status - DEBUG - JOINT_0 velocity: -2.740000000000002
+2023-11-23 21:01:12,699 - qtpyvcp.plugins.status - DEBUG - JOINT_0 input: 0.03717999999999977
+2023-11-23 21:01:12,699 - qtpyvcp.plugins.status - DEBUG - JOINT_0 output: 0.0344399999999997
+2023-11-23 21:01:12,699 - qtpyvcp.plugins.status - DEBUG - JOINT_0 ferror_current: -6.938893903907228e-17
+2023-11-23 21:01:12,699 - qtpyvcp.plugins.status - DEBUG - JOINT_1 velocity: -0.019999999999997606
+2023-11-23 21:01:12,700 - qtpyvcp.plugins.status - DEBUG - JOINT_1 ferror_current: 8.326672684688674e-17
+2023-11-23 21:01:12,700 - qtpyvcp.plugins.status - DEBUG - JOINT_1 output: -0.24150000000000016
+2023-11-23 21:01:12,700 - qtpyvcp.plugins.status - DEBUG - JOINT_1 input: -0.24148000000000025
+2023-11-23 21:01:12,774 - qtpyvcp.plugins.status - DEBUG - JOINT_0 velocity: -1.779999999999999
+2023-11-23 21:01:12,774 - qtpyvcp.plugins.status - DEBUG - JOINT_0 input: -0.1644000000000002
+2023-11-23 21:01:12,774 - qtpyvcp.plugins.status - DEBUG - JOINT_0 output: -0.1661800000000003
+2023-11-23 21:01:12,774 - qtpyvcp.plugins.status - DEBUG - JOINT_0 ferror_current: -8.326672684688674e-17
+2023-11-23 21:01:12,775 - qtpyvcp.plugins.status - DEBUG - JOINT_1 velocity: 0.0
+2023-11-23 21:01:12,775 - qtpyvcp.plugins.status - DEBUG - JOINT_1 ferror_current: 5.551115123125783e-17
+2023-11-23 21:01:12,775 - qtpyvcp.plugins.status - DEBUG - JOINT_1 input: -0.24150000000000021
+2023-11-23 21:01:12,775 - qtpyvcp.plugins.status - DEBUG - JOINT_1 inpos: 1
+2023-11-23 21:01:12,848 - qtpyvcp.plugins.status - DEBUG - JOINT_0 velocity: -0.35999999999999766
+2023-11-23 21:01:12,849 - qtpyvcp.plugins.status - DEBUG - JOINT_0 input: -0.24108000000000018
+2023-11-23 21:01:12,849 - qtpyvcp.plugins.status - DEBUG - JOINT_0 ferror_current: -2.7755575615628914e-17
+2023-11-23 21:01:12,849 - qtpyvcp.plugins.status - DEBUG - JOINT_0 output: -0.2414400000000002
+2023-11-23 21:01:12,849 - qtpyvcp.plugins.status - DEBUG - JOINT_1 velocity: 0.2
+2023-11-23 21:01:12,849 - qtpyvcp.plugins.status - DEBUG - JOINT_1 output: -0.2323999999999999
+2023-11-23 21:01:12,850 - qtpyvcp.plugins.status - DEBUG - JOINT_1 ferror_current: -5.551115123125783e-17
+2023-11-23 21:01:12,850 - qtpyvcp.plugins.status - DEBUG - JOINT_1 inpos: 0
+2023-11-23 21:01:12,850 - qtpyvcp.plugins.status - DEBUG - JOINT_1 input: -0.23259999999999986
+2023-11-23 21:01:12,923 - qtpyvcp.plugins.status - DEBUG - JOINT_0 inpos: 1
+2023-11-23 21:01:12,923 - qtpyvcp.plugins.status - DEBUG - JOINT_0 input: -0.24450000000000016
+2023-11-23 21:01:12,924 - qtpyvcp.plugins.status - DEBUG - JOINT_0 ferror_current: 0.0
+2023-11-23 21:01:12,924 - qtpyvcp.plugins.status - DEBUG - JOINT_0 output: -0.24450000000000016
+2023-11-23 21:01:12,924 - qtpyvcp.plugins.status - DEBUG - JOINT_0 velocity: 0.0
+2023-11-23 21:01:12,924 - qtpyvcp.plugins.status - DEBUG - JOINT_1 output: -0.2183999999999995
+2023-11-23 21:01:12,925 - qtpyvcp.plugins.status - DEBUG - JOINT_1 input: -0.21859999999999946
+2023-11-23 21:01:12,999 - qtpyvcp.plugins.status - DEBUG - JOINT_0 output: -0.2388
+2023-11-23 21:01:12,999 - qtpyvcp.plugins.status - DEBUG - JOINT_0 velocity: 0.2
+2023-11-23 21:01:12,999 - qtpyvcp.plugins.status - DEBUG - JOINT_0 ferror_current: -2.7755575615628914e-17
+2023-11-23 21:01:13,000 - qtpyvcp.plugins.status - DEBUG - JOINT_0 inpos: 0
+2023-11-23 21:01:13,000 - qtpyvcp.plugins.status - DEBUG - JOINT_0 input: -0.239
+2023-11-23 21:01:13,000 - qtpyvcp.plugins.status - DEBUG - JOINT_1 input: -0.20239999999999903
+2023-11-23 21:01:13,000 - qtpyvcp.plugins.status - DEBUG - JOINT_1 output: -0.20219999999999905
+2023-11-23 21:01:13,000 - qtpyvcp.plugins.status - DEBUG - JOINT_1 ferror_current: -2.7755575615628914e-17
+2023-11-23 21:01:13,073 - qtpyvcp.plugins.status - DEBUG - JOINT_0 output: -0.2247999999999996
+2023-11-23 21:01:13,074 - qtpyvcp.plugins.status - DEBUG - JOINT_0 input: -0.22499999999999964
+2023-11-23 21:01:13,074 - qtpyvcp.plugins.status - DEBUG - JOINT_0 ferror_current: 2.7755575615628914e-17
+2023-11-23 21:01:13,074 - qtpyvcp.plugins.status - DEBUG - JOINT_1 output: -0.18819999999999865
+2023-11-23 21:01:13,074 - qtpyvcp.plugins.status - DEBUG - JOINT_1 input: -0.18839999999999857
+2023-11-23 21:01:13,075 - qtpyvcp.plugins.status - DEBUG - JOINT_1 ferror_current: -8.326672684688674e-17
+2023-11-23 21:01:13,149 - qtpyvcp.plugins.status - DEBUG - JOINT_0 output: -0.20859999999999915
+2023-11-23 21:01:13,149 - qtpyvcp.plugins.status - DEBUG - JOINT_0 ferror_current: 5.551115123125783e-17
+2023-11-23 21:01:13,149 - qtpyvcp.plugins.status - DEBUG - JOINT_0 input: -0.2087999999999992
+2023-11-23 21:01:13,149 - qtpyvcp.plugins.status - DEBUG - JOINT_1 output: -0.17199999999999818
+2023-11-23 21:01:13,150 - qtpyvcp.plugins.status - DEBUG - JOINT_1 ferror_current: -5.551115123125783e-17
+2023-11-23 21:01:13,150 - qtpyvcp.plugins.status - DEBUG - JOINT_1 input: -0.17219999999999813
+2023-11-23 21:01:13,224 - qtpyvcp.plugins.status - DEBUG - JOINT_0 ferror_current: 0.0
+2023-11-23 21:01:13,224 - qtpyvcp.plugins.status - DEBUG - JOINT_0 input: -0.19479999999999875
+2023-11-23 21:01:13,224 - qtpyvcp.plugins.status - DEBUG - JOINT_0 output: -0.19459999999999875
+2023-11-23 21:01:13,225 - qtpyvcp.plugins.status - DEBUG - JOINT_1 output: -0.15799999999999778
+2023-11-23 21:01:13,225 - qtpyvcp.plugins.status - DEBUG - JOINT_1 input: -0.15819999999999773
+2023-11-23 21:01:13,298 - qtpyvcp.plugins.status - DEBUG - JOINT_0 output: -0.17839999999999828
+2023-11-23 21:01:13,299 - qtpyvcp.plugins.status - DEBUG - JOINT_0 input: -0.17859999999999832
+2023-11-23 21:01:13,299 - qtpyvcp.plugins.status - DEBUG - JOINT_0 ferror_current: 2.7755575615628914e-17
+2023-11-23 21:01:13,299 - qtpyvcp.plugins.status - DEBUG - JOINT_1 output: -0.14179999999999732
+2023-11-23 21:01:13,299 - qtpyvcp.plugins.status - DEBUG - JOINT_1 input: -0.14199999999999724
+2023-11-23 21:01:13,300 - qtpyvcp.plugins.status - DEBUG - JOINT_1 ferror_current: -8.326672684688674e-17
+2023-11-23 21:01:13,373 - qtpyvcp.plugins.status - DEBUG - JOINT_0 ferror_current: 8.326672684688674e-17
+2023-11-23 21:01:13,373 - qtpyvcp.plugins.status - DEBUG - JOINT_0 input: -0.16459999999999797
+2023-11-23 21:01:13,374 - qtpyvcp.plugins.status - DEBUG - JOINT_0 output: -0.16439999999999788
+2023-11-23 21:01:13,374 - qtpyvcp.plugins.status - DEBUG - JOINT_1 ferror_current: -2.7755575615628914e-17
+2023-11-23 21:01:13,374 - qtpyvcp.plugins.status - DEBUG - JOINT_1 input: -0.1279999999999969
+2023-11-23 21:01:13,374 - qtpyvcp.plugins.status - DEBUG - JOINT_1 output: -0.12779999999999692
+2023-11-23 21:01:13,448 - qtpyvcp.plugins.status - DEBUG - JOINT_0 ferror_current: 0.0
+2023-11-23 21:01:13,448 - qtpyvcp.plugins.status - DEBUG - JOINT_0 input: -0.14839999999999742
+2023-11-23 21:01:13,448 - qtpyvcp.plugins.status - DEBUG - JOINT_0 output: -0.14819999999999742
+2023-11-23 21:01:13,449 - qtpyvcp.plugins.status - DEBUG - JOINT_1 output: -0.11159999999999645
+2023-11-23 21:01:13,449 - qtpyvcp.plugins.status - DEBUG - JOINT_1 ferror_current: -5.551115123125783e-17
+2023-11-23 21:01:13,449 - qtpyvcp.plugins.status - DEBUG - JOINT_1 input: -0.1117999999999964
+2023-11-23 21:01:13,524 - qtpyvcp.plugins.status - DEBUG - JOINT_0 ferror_current: 5.551115123125783e-17
+2023-11-23 21:01:13,524 - qtpyvcp.plugins.status - DEBUG - JOINT_0 input: -0.13439999999999708
+2023-11-23 21:01:13,524 - qtpyvcp.plugins.status - DEBUG - JOINT_0 output: -0.13419999999999702
+2023-11-23 21:01:13,525 - qtpyvcp.plugins.status - DEBUG - JOINT_1 input: -0.097799999999996
+2023-11-23 21:01:13,525 - qtpyvcp.plugins.status - DEBUG - JOINT_1 output: -0.09759999999999605
+2023-11-23 21:01:13,599 - qtpyvcp.plugins.status - DEBUG - JOINT_0 output: -0.11999999999999661
+2023-11-23 21:01:13,599 - qtpyvcp.plugins.status - DEBUG - JOINT_0 input: -0.12019999999999664
+2023-11-23 21:01:13,599 - qtpyvcp.plugins.status - DEBUG - JOINT_0 ferror_current: 2.7755575615628914e-17
+2023-11-23 21:01:13,599 - qtpyvcp.plugins.status - DEBUG - JOINT_1 output: -0.08339999999999564
+2023-11-23 21:01:13,600 - qtpyvcp.plugins.status - DEBUG - JOINT_1 input: -0.08359999999999557
+2023-11-23 21:01:13,600 - qtpyvcp.plugins.status - DEBUG - JOINT_1 ferror_current: -8.326672684688674e-17
+2023-11-23 21:01:13,673 - qtpyvcp.plugins.status - DEBUG - JOINT_0 output: -0.10399999999999615
+2023-11-23 21:01:13,674 - qtpyvcp.plugins.status - DEBUG - JOINT_0 input: -0.10419999999999618
+2023-11-23 21:01:13,674 - qtpyvcp.plugins.status - DEBUG - JOINT_1 input: -0.06759999999999511
+2023-11-23 21:01:13,674 - qtpyvcp.plugins.status - DEBUG - JOINT_1 output: -0.06739999999999519
+2023-11-23 21:01:13,749 - qtpyvcp.plugins.status - DEBUG - JOINT_0 input: -0.08999999999999586
+2023-11-23 21:01:13,749 - qtpyvcp.plugins.status - DEBUG - JOINT_0 ferror_current: 1.1102230246251565e-16
+2023-11-23 21:01:13,749 - qtpyvcp.plugins.status - DEBUG - JOINT_0 output: -0.08979999999999574
+2023-11-23 21:01:13,750 - qtpyvcp.plugins.status - DEBUG - JOINT_1 output: -0.053199999999995105
+2023-11-23 21:01:13,750 - qtpyvcp.plugins.status - DEBUG - JOINT_1 input: -0.05339999999999506
+2023-11-23 21:01:13,750 - qtpyvcp.plugins.status - DEBUG - JOINT_1 ferror_current: -4.163336342344337e-17
+2023-11-23 21:01:13,824 - qtpyvcp.plugins.status - DEBUG - JOINT_0 input: -0.0739999999999954
+2023-11-23 21:01:13,824 - qtpyvcp.plugins.status - DEBUG - JOINT_0 output: -0.07379999999999529
+2023-11-23 21:01:13,824 - qtpyvcp.plugins.status - DEBUG - JOINT_1 output: -0.0371999999999952
+2023-11-23 21:01:13,825 - qtpyvcp.plugins.status - DEBUG - JOINT_1 input: -0.03739999999999516
+2023-11-23 21:01:13,898 - qtpyvcp.plugins.status - DEBUG - JOINT_0 ferror_current: 9.71445146547012e-17
+2023-11-23 21:01:13,898 - qtpyvcp.plugins.status - DEBUG - JOINT_0 output: -0.05959999999999498
+2023-11-23 21:01:13,899 - qtpyvcp.plugins.status - DEBUG - JOINT_0 input: -0.05979999999999508
+2023-11-23 21:01:13,899 - qtpyvcp.plugins.status - DEBUG - JOINT_1 ferror_current: -6.245004513516506e-17
+2023-11-23 21:01:13,899 - qtpyvcp.plugins.status - DEBUG - JOINT_1 output: -0.022999999999995288
+2023-11-23 21:01:13,899 - qtpyvcp.plugins.status - DEBUG - JOINT_1 input: -0.023199999999995224
+2023-11-23 21:01:13,974 - qtpyvcp.plugins.status - DEBUG - JOINT_0 output: -0.04359999999999508
+2023-11-23 21:01:13,974 - qtpyvcp.plugins.status - DEBUG - JOINT_0 input: -0.043799999999995176
+2023-11-23 21:01:13,975 - qtpyvcp.plugins.status - DEBUG - JOINT_1 ferror_current: -1.0234868508263162e-16
+2023-11-23 21:01:13,975 - qtpyvcp.plugins.status - DEBUG - JOINT_1 output: -0.006999999999995313
+2023-11-23 21:01:13,975 - qtpyvcp.plugins.status - DEBUG - JOINT_1 input: -0.00719999999999521
+2023-11-23 21:01:14,063 - qtpyvcp.plugins.status - DEBUG - JOINT_0 output: -0.029399999999995166
+2023-11-23 21:01:14,063 - qtpyvcp.plugins.status - DEBUG - JOINT_0 input: -0.029599999999995186
+2023-11-23 21:01:14,064 - qtpyvcp.plugins.status - DEBUG - JOINT_0 ferror_current: 2.0816681711721685e-17
+2023-11-23 21:01:14,064 - qtpyvcp.plugins.status - DEBUG - JOINT_1 output: 3.977782379500606e-11
+2023-11-23 21:01:14,064 - qtpyvcp.plugins.status - DEBUG - JOINT_1 input: 3.9777736660084884e-11
+2023-11-23 21:01:14,064 - qtpyvcp.plugins.status - DEBUG - JOINT_1 inpos: 1
+2023-11-23 21:01:14,064 - qtpyvcp.plugins.status - DEBUG - JOINT_1 homing: 0
+2023-11-23 21:01:14,065 - qtpyvcp.plugins.status - DEBUG - JOINT_1 ferror_current: 8.713492117620522e-17
+2023-11-23 21:01:14,065 - qtpyvcp.plugins.status - DEBUG - JOINT_1 homed: 1
+2023-11-23 21:01:14,065 - qtpyvcp.plugins.status - DEBUG - JOINT_1 velocity: 0.0
+2023-11-23 21:01:14,123 - qtpyvcp.plugins.status - DEBUG - JOINT_0 output: -0.013399999999995242
+2023-11-23 21:01:14,124 - qtpyvcp.plugins.status - DEBUG - JOINT_0 ferror_current: 3.9898639947466563e-17
+2023-11-23 21:01:14,124 - qtpyvcp.plugins.status - DEBUG - JOINT_0 input: -0.013599999999995283
+2023-11-23 21:01:14,199 - qtpyvcp.plugins.status - DEBUG - JOINT_0 input: 0.0008799999999999919
+2023-11-23 21:01:14,200 - qtpyvcp.plugins.status - DEBUG - JOINT_0 velocity: 0.02000000000000002
+2023-11-23 21:01:14,200 - qtpyvcp.plugins.status - DEBUG - JOINT_0 ferror_current: 1.734723475976807e-18
+2023-11-23 21:01:14,200 - qtpyvcp.plugins.status - DEBUG - JOINT_0 output: 0.0008999999999999937
+2023-11-23 21:01:14,265 - qtpyvcp.plugins.tool_table - DEBUG - reload_tool: tool in spindle: 0 new tool: 0
+2023-11-23 21:01:14,335 - qtpyvcp.plugins.status - DEBUG - JOINT_0 output: 3.97778237958928e-11
+2023-11-23 21:01:14,336 - qtpyvcp.plugins.status - DEBUG - JOINT_0 inpos: 1
+2023-11-23 21:01:14,336 - qtpyvcp.plugins.status - DEBUG - JOINT_0 homing: 0
+2023-11-23 21:01:14,336 - qtpyvcp.plugins.status - DEBUG - JOINT_0 ferror_current: -1.3490879701120943e-16
+2023-11-23 21:01:14,336 - qtpyvcp.plugins.status - DEBUG - JOINT_0 input: 3.977795870468981e-11
+2023-11-23 21:01:14,336 - qtpyvcp.plugins.status - DEBUG - JOINT_0 homed: 1
+2023-11-23 21:01:14,337 - qtpyvcp.plugins.status - DEBUG - JOINT_0 velocity: 0.0
+2023-11-23 21:01:14,337 - qtpyvcp.plugins.status - DEBUG - JOINT_0 ferror_highmark: 1.8030282128433939e-16
+2023-11-23 21:01:15,710 - qtpyvcp.plugins.status - DEBUG - JOINT_0 input: 0.0008450000397777213
+2023-11-23 21:01:15,710 - qtpyvcp.plugins.status - DEBUG - JOINT_0 output: 0.0010850000397778239
+2023-11-23 21:01:15,710 - qtpyvcp.plugins.status - DEBUG - JOINT_0 velocity: 0.25500000000000006
+2023-11-23 21:01:15,711 - qtpyvcp.plugins.status - DEBUG - JOINT_0 ferror_current: 1.0245710529988017e-16
+2023-11-23 21:01:15,775 - qtpyvcp.plugins.status - DEBUG - JOINT_0 input: 0.09009500003977777
+2023-11-23 21:01:15,775 - qtpyvcp.plugins.status - DEBUG - JOINT_0 velocity: 2.354999999999996
+2023-11-23 21:01:15,775 - qtpyvcp.plugins.status - DEBUG - JOINT_0 output: 0.09243500003977788
+2023-11-23 21:01:15,775 - qtpyvcp.plugins.status - DEBUG - JOINT_0 ferror_current: 1.1102230246251565e-16
+2023-11-23 21:01:15,776 - qtpyvcp.plugins.status - DEBUG - JOINT_0 ferror_highmark: 2.1467203015212988e-16
+2023-11-23 21:01:15,849 - qtpyvcp.plugins.status - DEBUG - JOINT_0 ferror_current: -5.551115123125783e-17
+2023-11-23 21:01:15,849 - qtpyvcp.plugins.status - DEBUG - JOINT_0 velocity: 4.484999999999989
+2023-11-23 21:01:15,850 - qtpyvcp.plugins.status - DEBUG - JOINT_0 input: 0.3307850000397774
+2023-11-23 21:01:15,850 - qtpyvcp.plugins.status - DEBUG - JOINT_0 output: 0.3352550000397774
+2023-11-23 21:01:15,923 - qtpyvcp.plugins.status - DEBUG - JOINT_0 ferror_current: 2.220446049250313e-16
+2023-11-23 21:01:15,923 - qtpyvcp.plugins.status - DEBUG - JOINT_0 input: 0.7161350000397773
+2023-11-23 21:01:15,924 - qtpyvcp.plugins.status - DEBUG - JOINT_0 velocity: 6.585000000000007
+2023-11-23 21:01:15,924 - qtpyvcp.plugins.status - DEBUG - JOINT_0 ferror_highmark: 2.220446049250313e-16
+2023-11-23 21:01:15,924 - qtpyvcp.plugins.status - DEBUG - JOINT_0 output: 0.7227050000397774
+2023-11-23 21:01:15,999 - qtpyvcp.plugins.status - DEBUG - JOINT_0 ferror_current: 0.0
+2023-11-23 21:01:15,999 - qtpyvcp.plugins.status - DEBUG - JOINT_0 velocity: 9.014999999999995
+2023-11-23 21:01:15,999 - qtpyvcp.plugins.status - DEBUG - JOINT_0 input: 1.3455050000397784
+2023-11-23 21:01:15,999 - qtpyvcp.plugins.status - DEBUG - JOINT_0 output: 1.3545050000397785
+2023-11-23 21:01:16,074 - qtpyvcp.plugins.status - DEBUG - JOINT_0 input: 2.0283300000397784
+2023-11-23 21:01:16,074 - qtpyvcp.plugins.status - DEBUG - JOINT_0 ferror_current: -4.440892098500626e-16
+2023-11-23 21:01:16,074 - qtpyvcp.plugins.status - DEBUG - JOINT_0 velocity: 9.999999999999787
+2023-11-23 21:01:16,074 - qtpyvcp.plugins.status - DEBUG - JOINT_0 ferror_highmark: 4.440892098500626e-16
+2023-11-23 21:01:16,074 - qtpyvcp.plugins.status - DEBUG - JOINT_0 output: 2.0383300000397777
+2023-11-23 21:01:16,148 - qtpyvcp.plugins.status - DEBUG - JOINT_0 output: 2.8483300000397604
+2023-11-23 21:01:16,148 - qtpyvcp.plugins.status - DEBUG - JOINT_0 input: 2.838330000039761
+2023-11-23 21:01:16,223 - qtpyvcp.plugins.status - DEBUG - JOINT_0 input: 3.538330000039746
+2023-11-23 21:01:16,223 - qtpyvcp.plugins.status - DEBUG - JOINT_0 output: 3.5483300000397455
+2023-11-23 21:01:16,299 - qtpyvcp.plugins.status - DEBUG - JOINT_0 ferror_current: 0.0
+2023-11-23 21:01:16,299 - qtpyvcp.plugins.status - DEBUG - JOINT_0 input: 4.348330000039729
+2023-11-23 21:01:16,299 - qtpyvcp.plugins.status - DEBUG - JOINT_0 output: 4.358330000039729
+2023-11-23 21:01:16,373 - qtpyvcp.plugins.status - DEBUG - JOINT_0 input: 5.048330000039714
+2023-11-23 21:01:16,374 - qtpyvcp.plugins.status - DEBUG - JOINT_0 output: 5.058330000039714
+2023-11-23 21:01:16,448 - qtpyvcp.plugins.status - DEBUG - JOINT_0 input: 5.858330000039697
+2023-11-23 21:01:16,448 - qtpyvcp.plugins.status - DEBUG - JOINT_0 output: 5.868330000039696
+2023-11-23 21:01:16,524 - qtpyvcp.plugins.status - DEBUG - JOINT_0 output: 6.5683300000396825
+2023-11-23 21:01:16,524 - qtpyvcp.plugins.status - DEBUG - JOINT_0 input: 6.558330000039682
+2023-11-23 21:01:16,599 - qtpyvcp.plugins.status - DEBUG - JOINT_0 output: 7.378330000039664
+2023-11-23 21:01:16,599 - qtpyvcp.plugins.status - DEBUG - JOINT_0 ferror_highmark: 8.881784197001252e-16
+2023-11-23 21:01:16,599 - qtpyvcp.plugins.status - DEBUG - JOINT_0 ferror_current: -8.881784197001252e-16
+2023-11-23 21:01:16,599 - qtpyvcp.plugins.status - DEBUG - JOINT_0 input: 7.368330000039666
+2023-11-23 21:01:16,673 - qtpyvcp.plugins.status - DEBUG - JOINT_0 ferror_current: 0.0
+2023-11-23 21:01:16,674 - qtpyvcp.plugins.status - DEBUG - JOINT_0 input: 8.06833000003965
+2023-11-23 21:01:16,674 - qtpyvcp.plugins.status - DEBUG - JOINT_0 output: 8.07833000003965
+2023-11-23 21:01:16,751 - qtpyvcp.plugins.status - DEBUG - JOINT_0 input: 8.778330000039634
+2023-11-23 21:01:16,751 - qtpyvcp.plugins.status - DEBUG - JOINT_0 output: 8.788330000039634
+2023-11-23 21:01:16,826 - qtpyvcp.plugins.status - DEBUG - JOINT_0 input: 9.578330000039617
+2023-11-23 21:01:16,826 - qtpyvcp.plugins.status - DEBUG - JOINT_0 output: 9.588330000039617
+2023-11-23 21:01:16,899 - qtpyvcp.plugins.status - DEBUG - JOINT_0 velocity: 9.74499999999967
+2023-11-23 21:01:16,899 - qtpyvcp.plugins.status - DEBUG - JOINT_0 input: 10.287485000039604
+2023-11-23 21:01:16,899 - qtpyvcp.plugins.status - DEBUG - JOINT_0 output: 10.297245000039604
+2023-11-23 21:01:16,974 - qtpyvcp.plugins.status - DEBUG - JOINT_0 output: 10.980845000039608
+2023-11-23 21:01:16,974 - qtpyvcp.plugins.status - DEBUG - JOINT_0 velocity: 7.344999999999935
+2023-11-23 21:01:16,974 - qtpyvcp.plugins.status - DEBUG - JOINT_0 input: 10.973485000039608
+2023-11-23 21:01:17,048 - qtpyvcp.plugins.status - DEBUG - JOINT_0 output: 11.426725000039609
+2023-11-23 21:01:17,049 - qtpyvcp.plugins.status - DEBUG - JOINT_0 input: 11.421495000039608
+2023-11-23 21:01:17,049 - qtpyvcp.plugins.status - DEBUG - JOINT_0 velocity: 5.214999999999748
+2023-11-23 21:01:17,126 - qtpyvcp.plugins.status - DEBUG - JOINT_0 output: 11.74792500003961
+2023-11-23 21:01:17,126 - qtpyvcp.plugins.status - DEBUG - JOINT_0 velocity: 2.815000000000012
+2023-11-23 21:01:17,127 - qtpyvcp.plugins.status - DEBUG - JOINT_0 input: 11.74509500003961
+2023-11-23 21:01:17,199 - qtpyvcp.plugins.status - DEBUG - JOINT_0 velocity: 0.6849999999998246
+2023-11-23 21:01:17,200 - qtpyvcp.plugins.status - DEBUG - JOINT_0 output: 11.872175000039611
+2023-11-23 21:01:17,200 - qtpyvcp.plugins.status - DEBUG - JOINT_0 input: 11.87147500003961
+2023-11-23 21:01:17,277 - qtpyvcp.plugins.status - DEBUG - JOINT_0 input: 11.880000000039614
+2023-11-23 21:01:17,278 - qtpyvcp.plugins.status - DEBUG - JOINT_0 output: 11.880000000039614
+2023-11-23 21:01:17,278 - qtpyvcp.plugins.status - DEBUG - JOINT_0 velocity: 0.0
+2023-11-23 21:01:17,951 - qtpyvcp.plugins.status - DEBUG - JOINT_3 ferror_current: 2.220446049250313e-16
+2023-11-23 21:01:17,952 - qtpyvcp.plugins.status - DEBUG - JOINT_3 velocity: 36.00000000000003
+2023-11-23 21:01:17,952 - qtpyvcp.plugins.status - DEBUG - JOINT_3 input: 1.530000003054527
+2023-11-23 21:01:17,952 - qtpyvcp.plugins.status - DEBUG - JOINT_3 output: 1.5660000030545271
+2023-11-23 21:01:18,024 - qtpyvcp.plugins.status - DEBUG - JOINT_3 velocity: 35.99999999999959
+2023-11-23 21:01:18,024 - qtpyvcp.plugins.status - DEBUG - JOINT_3 output: 4.122000003054528
+2023-11-23 21:01:18,024 - qtpyvcp.plugins.status - DEBUG - JOINT_3 ferror_highmark: 8.881784197001252e-16
+2023-11-23 21:01:18,025 - qtpyvcp.plugins.status - DEBUG - JOINT_3 input: 4.086000003054529
+2023-11-23 21:01:18,025 - qtpyvcp.plugins.status - DEBUG - JOINT_3 ferror_current: -8.881784197001252e-16
+2023-11-23 21:01:18,099 - qtpyvcp.plugins.status - DEBUG - JOINT_3 ferror_current: 0.0
+2023-11-23 21:01:18,100 - qtpyvcp.plugins.status - DEBUG - JOINT_3 output: 7.002000003054494
+2023-11-23 21:01:18,100 - qtpyvcp.plugins.status - DEBUG - JOINT_3 input: 6.966000003054496
+2023-11-23 21:01:18,174 - qtpyvcp.plugins.status - DEBUG - JOINT_3 output: 9.558000003054467
+2023-11-23 21:01:18,174 - qtpyvcp.plugins.status - DEBUG - JOINT_3 input: 9.522000003054467
+2023-11-23 21:01:18,248 - qtpyvcp.plugins.status - DEBUG - JOINT_3 input: 12.402000003054434
+2023-11-23 21:01:18,249 - qtpyvcp.plugins.status - DEBUG - JOINT_3 output: 12.438000003054434
+2023-11-23 21:01:18,324 - qtpyvcp.plugins.status - DEBUG - JOINT_3 input: 14.958000003054407
+2023-11-23 21:01:18,324 - qtpyvcp.plugins.status - DEBUG - JOINT_3 output: 14.994000003054405
+2023-11-23 21:01:18,398 - qtpyvcp.plugins.status - DEBUG - JOINT_3 input: 17.47800000305445
+2023-11-23 21:01:18,399 - qtpyvcp.plugins.status - DEBUG - JOINT_3 velocity: 36.000000000001364
+2023-11-23 21:01:18,399 - qtpyvcp.plugins.status - DEBUG - JOINT_3 output: 17.514000003054452
+2023-11-23 21:01:18,399 - qtpyvcp.plugins.status - DEBUG - JOINT_3 ferror_highmark: 1.7763568394002505e-15
+2023-11-23 21:01:18,474 - qtpyvcp.plugins.status - DEBUG - JOINT_3 velocity: 0.0
+2023-11-23 21:01:18,474 - qtpyvcp.plugins.status - DEBUG - JOINT_3 input: 19.54800000305451
+2023-11-23 21:01:18,474 - qtpyvcp.plugins.status - DEBUG - JOINT_3 output: 19.54800000305451
+2023-11-23 21:01:22,477 - qtpyvcp.widgets.input_widgets.file_system - INFO - File encoding: ascii
+2023-11-23 21:01:22,674 - qtpyvcp.actions.program_actions - DEBUG - Loading NC program: /home/groot/Downloads/XinDian_OP30_Topside Vise.ngc
+2023-11-23 21:01:22,726 - qtpyvcp.plugins.offset_table - DEBUG - Params file changed: /home/groot/linuxcnc/configs/probe_basic/sim.var
+2023-11-23 21:01:22,730 - qtpyvcp.widgets.input_widgets.gcode_text_edit - INFO - File encoding: ascii
+2023-11-23 21:01:22,954 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_backplot - DEBUG - -------load_program
+2023-11-23 21:01:22,961 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_canon - DEBUG - ---------received wcs change: 0
+2023-11-23 21:01:22,974 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_canon - DEBUG - G-code Comment: interpreter: feed mode set to units per minute
+2023-11-23 21:01:22,975 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_canon - DEBUG - G-code Comment: interpreter: cutter radius compensation off
+2023-11-23 21:01:22,975 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_canon - DEBUG - G-code Comment: interpreter: continuing to use same coordinate system
+2023-11-23 21:01:22,975 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_canon - DEBUG - G-code Comment: interpreter: retract mode set to old_z
+2023-11-23 21:01:22,975 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_canon - DEBUG - G-code Comment: interpreter: motion mode set to none
+2023-11-23 21:01:22,975 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_canon - DEBUG - G-code Comment: XINDIAN_OP30_TOPSIDE VISE
+2023-11-23 21:01:22,975 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_canon - DEBUG - G-code Comment: T25  D=4. CR=2. - ZMIN=8.569 - KUGELKOPFFRSER
+2023-11-23 21:01:22,975 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_canon - DEBUG - G-code Comment: T26  D=6. CR=3. - ZMIN=9.9 - KUGELKOPFFRSER
+2023-11-23 21:01:22,975 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_canon - DEBUG - G-code Comment: T223  D=5. CR=0. - ZMIN=13. - SCHAFTFRSER
+2023-11-23 21:01:22,976 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_canon - DEBUG - G-code Comment: T243  D=10. CR=0. - ZMIN=10.2 - SCHAFTFRSER
+2023-11-23 21:01:22,976 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_canon - DEBUG - G-code Comment: T258  D=45. CR=0.2 TAPER=45DEG - ZMIN=25. - PLANFRSER
+2023-11-23 21:01:22,976 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_canon - DEBUG - G-code Comment: T264  D=5.5 CR=0. TAPER=118DEG - ZMIN=13. - BOHRER
+2023-11-23 21:01:22,976 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_canon - DEBUG - G-code Comment: interpreter: feed mode set to units per minute
+2023-11-23 21:01:22,976 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_canon - DEBUG - G-code Comment: ADAPTIV5 2
+2023-11-23 21:01:22,977 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_canon - DEBUG - G-code Comment: interpreter: continuing to use same coordinate system
+2023-11-23 21:01:23,090 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_canon - DEBUG - G-code Comment: ADAPTIV10
+2023-11-23 21:01:23,098 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_canon - DEBUG - G-code Comment: PLANEN3
+2023-11-23 21:01:23,100 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_canon - DEBUG - G-code Comment: interpreter: continuing to use same coordinate system
+2023-11-23 21:01:23,100 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_canon - DEBUG - G-code Comment: BOHREN6
+2023-11-23 21:01:23,101 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_canon - DEBUG - G-code Comment: VHM DRILL 5.5MM
+2023-11-23 21:01:23,102 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_canon - DEBUG - G-code Comment: interpreter: continuing to use same coordinate system
+2023-11-23 21:01:23,102 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_canon - DEBUG - G-code Comment: interpreter: retract mode set to old_z
+2023-11-23 21:01:23,102 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_canon - DEBUG - G-code Comment: interpreter: motion mode set to none
+2023-11-23 21:01:23,102 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_canon - DEBUG - G-code Comment: BOHRFRSEN8
+2023-11-23 21:01:23,103 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_canon - DEBUG - G-code Comment: interpreter: continuing to use same coordinate system
+2023-11-23 21:01:23,214 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_canon - DEBUG - G-code Comment: BOHRFRSEN8 2
+2023-11-23 21:01:23,270 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_canon - DEBUG - G-code Comment: KONTUR1 3
+2023-11-23 21:01:23,271 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_canon - DEBUG - G-code Comment: BALL 4X10 LONG
+2023-11-23 21:01:23,271 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_canon - DEBUG - G-code Comment: interpreter: continuing to use same coordinate system
+2023-11-23 21:01:23,620 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_canon - DEBUG - G-code Comment: KONTUR1 4
+2023-11-23 21:01:23,996 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_canon - DEBUG - G-code Comment: ENTGRATEN1 2
+2023-11-23 21:01:23,997 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_canon - DEBUG - G-code Comment: BALL 4X10 LONG
+2023-11-23 21:01:23,997 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_canon - DEBUG - G-code Comment: interpreter: continuing to use same coordinate system
+2023-11-23 21:01:24,054 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_canon - DEBUG - ---------received wcs change: 0
+2023-11-23 21:01:24,054 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_backplot - DEBUG - -------Load time 1.1000568866729736 seconds ---
+2023-11-23 21:01:24,054 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_canon - DEBUG - ---------path points size: 384
+2023-11-23 21:01:24,054 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_canon - DEBUG - ---------path points length: 1
+2023-11-23 21:01:25,895 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_backplot - DEBUG - -------Draw time 2.9405810832977295 seconds ---
+2023-11-23 21:01:25,895 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_backplot - DEBUG - ---------wcs_offsets: {0: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], 1: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], 2: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], 3: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], 4: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], 5: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], 6: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], 7: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], 8: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]}
+2023-11-23 21:01:25,895 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_backplot - DEBUG - ---------wcs_index: 0
+2023-11-23 21:01:25,895 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_backplot - DEBUG - ---------current_offsets: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+2023-11-23 21:01:25,895 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_backplot - DEBUG - ---------current_position: 0.0
+2023-11-23 21:01:25,950 - qtpyvcp.widgets.input_widgets.gcode_text_edit - INFO - File encoding: ascii
+2023-11-23 21:01:26,233 - qtpyvcp.actions.program_actions - DEBUG - Loading NC program: /home/groot/Downloads/XinDian_OP30_Topside Vise.ngc
+2023-11-23 21:01:26,336 - qtpyvcp.actions.program_actions - DEBUG - Loading NC program: /home/groot/Downloads/XinDian_OP30_Topside Vise.ngc
+2023-11-23 21:01:26,392 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_backplot - DEBUG - on_offset_table_changed
+2023-11-23 21:01:27,691 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_backplot - DEBUG - ---camera parallel projection 15.503085000000002
+2023-11-23 21:01:27,731 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_backplot - DEBUG - ---camera parallel projection 13.952776500000002
+2023-11-23 21:01:27,757 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_backplot - DEBUG - ---camera parallel projection 12.557498850000002
+2023-11-23 21:01:27,773 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_backplot - DEBUG - ---camera parallel projection 11.301748965000002
+2023-11-23 21:01:27,797 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_backplot - DEBUG - ---camera parallel projection 10.171574068500002
+2023-11-23 21:01:27,817 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_backplot - DEBUG - ---camera parallel projection 9.154416661650002
+2023-11-23 21:01:27,853 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_backplot - DEBUG - ---camera parallel projection 8.238974995485002
+2023-11-23 21:01:28,125 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_backplot - DEBUG - ---camera parallel projection 7.415077495936502
+2023-11-23 21:01:28,161 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_backplot - DEBUG - ---camera parallel projection 6.673569746342852
+2023-11-23 21:01:28,185 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_backplot - DEBUG - ---camera parallel projection 6.006212771708567
+2023-11-23 21:01:28,215 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_backplot - DEBUG - ---camera parallel projection 5.405591494537711
+2023-11-23 21:01:28,247 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_backplot - DEBUG - ---camera parallel projection 4.8650323450839394
+2023-11-23 21:01:28,494 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_backplot - DEBUG - button event MiddleButtonPressEvent
+2023-11-23 21:01:28,960 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_backplot - DEBUG - button event MiddleButtonReleaseEvent
+2023-11-23 21:01:29,578 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_backplot - DEBUG - button event MiddleButtonPressEvent
+2023-11-23 21:01:29,997 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_backplot - DEBUG - button event MiddleButtonReleaseEvent
+2023-11-23 21:01:30,273 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_backplot - DEBUG - ---camera parallel projection 4.3785291105755455
+2023-11-23 21:01:30,293 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_backplot - DEBUG - ---camera parallel projection 3.940676199517991
+2023-11-23 21:01:30,315 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_backplot - DEBUG - ---camera parallel projection 3.546608579566192
+2023-11-23 21:01:30,325 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_backplot - DEBUG - ---camera parallel projection 3.191947721609573
+2023-11-23 21:01:30,345 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_backplot - DEBUG - ---camera parallel projection 2.8727529494486155
+2023-11-23 21:01:30,359 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_backplot - DEBUG - ---camera parallel projection 2.585477654503754
+2023-11-23 21:01:30,399 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_backplot - DEBUG - ---camera parallel projection 2.3269298890533787
+2023-11-23 21:01:30,652 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_backplot - DEBUG - ---camera parallel projection 2.094236900148041
+2023-11-23 21:01:30,673 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_backplot - DEBUG - ---camera parallel projection 1.8848132101332369
+2023-11-23 21:01:30,687 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_backplot - DEBUG - ---camera parallel projection 1.6963318891199133
+2023-11-23 21:01:30,707 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_backplot - DEBUG - ---camera parallel projection 1.526698700207922
+2023-11-23 21:01:30,727 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_backplot - DEBUG - ---camera parallel projection 1.3740288301871297
+2023-11-23 21:01:31,026 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_backplot - DEBUG - button event MiddleButtonPressEvent
+2023-11-23 21:01:31,509 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_backplot - DEBUG - button event MiddleButtonReleaseEvent
+2023-11-23 21:01:33,360 - qtpyvcp.plugins.offset_table - DEBUG - Params file changed: /home/groot/linuxcnc/configs/probe_basic/sim.var
+2023-11-23 21:01:33,455 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_backplot - DEBUG - on_offset_table_changed
+2023-11-23 21:01:34,938 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_backplot - DEBUG - update_tool
+2023-11-23 21:01:34,953 - qtpyvcp.plugins.offset_table - DEBUG - Params file changed: /home/groot/linuxcnc/configs/probe_basic/sim.var
+2023-11-23 21:01:35,005 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_backplot - DEBUG - on_offset_table_changed
+2023-11-23 21:01:35,114 - qtpyvcp.plugins.status - DEBUG - Spindle_0 speed: 15915.0
+2023-11-23 21:01:35,115 - qtpyvcp.plugins.status - DEBUG - Spindle_0 brake: 0
+2023-11-23 21:01:35,115 - qtpyvcp.plugins.status - DEBUG - Spindle_0 direction: 1
+2023-11-23 21:01:35,115 - qtpyvcp.plugins.status - DEBUG - Spindle_0 enabled: 1
+2023-11-23 21:01:35,200 - qtpyvcp.plugins.notifications - ERROR - Linear move on line 17 
+ would exceed X's negative limit 
+
+2023-11-23 21:01:35,265 - qtpyvcp.plugins.status - DEBUG - Spindle_0 direction: 0
+2023-11-23 21:01:35,266 - qtpyvcp.plugins.status - DEBUG - Spindle_0 speed: 0.0
+2023-11-23 21:01:35,266 - qtpyvcp.plugins.status - DEBUG - Spindle_0 brake: 1
+2023-11-23 21:01:35,266 - qtpyvcp.plugins.status - DEBUG - Spindle_0 enabled: 0
+2023-11-23 21:01:35,274 - qtpyvcp.plugins.offset_table - DEBUG - Params file changed: /home/groot/linuxcnc/configs/probe_basic/sim.var
+2023-11-23 21:01:35,328 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_backplot - DEBUG - on_offset_table_changed
+2023-11-23 21:01:35,392 - qtpyvcp.plugins.notifications - ERROR - Linear move on line 17 
+ would exceed joint 0's negative 
+ limit
+2023-11-23 21:01:35,593 - qtpyvcp.plugins.notifications - ERROR - invalid params in linear command 
+
+2023-11-23 21:01:45,535 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_backplot - DEBUG - ---camera parallel projection 21.57838360828443
+2023-11-23 21:01:45,574 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_backplot - DEBUG - ---camera parallel projection 19.420545247455987
+2023-11-23 21:01:45,607 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_backplot - DEBUG - ---camera parallel projection 17.47849072271039
+2023-11-23 21:01:45,667 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_backplot - DEBUG - ---camera parallel projection 15.73064165043935
+2023-11-23 21:01:45,992 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_backplot - DEBUG - button event MiddleButtonPressEvent
+2023-11-23 21:01:46,459 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_backplot - DEBUG - button event MiddleButtonReleaseEvent
+2023-11-23 21:01:48,799 - qtpyvcp.plugins.offset_table - DEBUG - Params file changed: /home/groot/linuxcnc/configs/probe_basic/sim.var
+2023-11-23 21:01:48,850 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_backplot - DEBUG - on_offset_table_changed
+2023-11-23 21:01:49,120 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_backplot - DEBUG - button event LeftButtonPressEvent
+2023-11-23 21:01:50,103 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_backplot - DEBUG - button event LeftButtonReleaseEvent
+2023-11-23 21:01:52,831 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: -0.01560332401795231
+2023-11-23 21:01:52,831 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: -0.014823324017952277
+2023-11-23 21:01:52,831 - qtpyvcp.plugins.status - DEBUG - JOINT_2 velocity: -0.7899999999999999
+2023-11-23 21:01:52,831 - qtpyvcp.plugins.status - DEBUG - JOINT_2 ferror_current: -3.2959746043559335e-17
+2023-11-23 21:01:52,903 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: -0.11990332401795235
+2023-11-23 21:01:52,903 - qtpyvcp.plugins.status - DEBUG - JOINT_2 ferror_current: -6.938893903907228e-17
+2023-11-23 21:01:52,903 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: -0.11772332401795227
+2023-11-23 21:01:52,903 - qtpyvcp.plugins.status - DEBUG - JOINT_2 velocity: -2.1900000000000044
+2023-11-23 21:01:52,982 - qtpyvcp.plugins.status - DEBUG - JOINT_2 velocity: -3.8100000000000076
+2023-11-23 21:01:52,982 - qtpyvcp.plugins.status - DEBUG - JOINT_2 ferror_current: -5.551115123125783e-17
+2023-11-23 21:01:52,983 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: -0.3629033240179526
+2023-11-23 21:01:52,983 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: -0.35910332401795253
+2023-11-23 21:01:53,053 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: -0.673403324017952
+2023-11-23 21:01:53,053 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: -0.678603324017952
+2023-11-23 21:01:53,054 - qtpyvcp.plugins.status - DEBUG - JOINT_2 ferror_current: -1.1102230246251565e-16
+2023-11-23 21:01:53,054 - qtpyvcp.plugins.status - DEBUG - JOINT_2 velocity: -5.209999999999992
+2023-11-23 21:01:53,128 - qtpyvcp.plugins.status - DEBUG - JOINT_2 ferror_current: 0.0
+2023-11-23 21:01:53,128 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: -1.166223324017949
+2023-11-23 21:01:53,129 - qtpyvcp.plugins.status - DEBUG - JOINT_2 velocity: -6.830000000000003
+2023-11-23 21:01:53,129 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: -1.1594033240179489
+2023-11-23 21:01:53,207 - qtpyvcp.plugins.status - DEBUG - JOINT_2 velocity: -8.229999999999848
+2023-11-23 21:01:53,207 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: -1.6933233240179437
+2023-11-23 21:01:53,207 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: -1.685103324017944
+2023-11-23 21:01:53,281 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: -2.4157233240179354
+2023-11-23 21:01:53,282 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: -2.4255633240179355
+2023-11-23 21:01:53,282 - qtpyvcp.plugins.status - DEBUG - JOINT_2 velocity: -9.849999999999914
+2023-11-23 21:01:53,353 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: -3.1249999906845876
+2023-11-23 21:01:53,353 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: -3.1149999906845878
+2023-11-23 21:01:53,354 - qtpyvcp.plugins.status - DEBUG - JOINT_2 velocity: -9.999999999999787
+2023-11-23 21:01:53,427 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: -3.9349999906845703
+2023-11-23 21:01:53,428 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: -3.9249999906845705
+2023-11-23 21:01:53,506 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: -4.624999990684556
+2023-11-23 21:01:53,507 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: -4.634999990684555
+2023-11-23 21:01:53,582 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: -5.344999990684539
+2023-11-23 21:01:53,582 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: -5.3349999906845404
+2023-11-23 21:01:53,653 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: -6.144999990684522
+2023-11-23 21:01:53,653 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: -6.134999990684523
+2023-11-23 21:01:53,654 - qtpyvcp.plugins.status - DEBUG - JOINT_2 ferror_highmark: 8.881784197001252e-16
+2023-11-23 21:01:53,729 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: -6.844999990684509
+2023-11-23 21:01:53,729 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: -6.8349999906845085
+2023-11-23 21:01:53,807 - qtpyvcp.plugins.status - DEBUG - JOINT_2 ferror_current: 8.881784197001252e-16
+2023-11-23 21:01:53,807 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: -7.654999990684491
+2023-11-23 21:01:53,807 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: -7.644999990684493
+2023-11-23 21:01:53,881 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: -8.346876657351148
+2023-11-23 21:01:53,881 - qtpyvcp.plugins.status - DEBUG - JOINT_2 velocity: -9.43000000000005
+2023-11-23 21:01:53,882 - qtpyvcp.plugins.status - DEBUG - JOINT_2 ferror_current: 0.0
+2023-11-23 21:01:53,882 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: -8.337436657351148
+2023-11-23 21:01:53,952 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: -9.045096657351154
+2023-11-23 21:01:53,953 - qtpyvcp.plugins.status - DEBUG - JOINT_2 velocity: -7.810000000000095
+2023-11-23 21:01:53,953 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: -9.037276657351152
+2023-11-23 21:01:54,027 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: -9.549196657351155
+2023-11-23 21:01:54,028 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: -9.542796657351156
+2023-11-23 21:01:54,028 - qtpyvcp.plugins.status - DEBUG - JOINT_2 velocity: -6.389999999999674
+2023-11-23 21:01:54,107 - qtpyvcp.plugins.status - DEBUG - JOINT_2 velocity: -4.78999999999985
+2023-11-23 21:01:54,107 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: -9.996396657351161
+2023-11-23 21:01:54,108 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: -9.991596657351161
+2023-11-23 21:01:54,177 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: -10.28269665735117
+2023-11-23 21:01:54,178 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: -10.286076657351172
+2023-11-23 21:01:54,178 - qtpyvcp.plugins.status - DEBUG - JOINT_2 velocity: -3.370000000000317
+2023-11-23 21:01:54,257 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: -10.489896657351181
+2023-11-23 21:01:54,257 - qtpyvcp.plugins.status - DEBUG - JOINT_2 velocity: -1.7700000000004934
+2023-11-23 21:01:54,257 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: -10.49167665735118
+2023-11-23 21:01:54,331 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: -10.56657665735119
+2023-11-23 21:01:54,332 - qtpyvcp.plugins.status - DEBUG - JOINT_2 velocity: -0.3500000000000725
+2023-11-23 21:01:54,332 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: -10.56693665735119
+2023-11-23 21:01:54,406 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: -10.569999990684522
+2023-11-23 21:01:54,407 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: -10.569999990684522
+2023-11-23 21:01:54,407 - qtpyvcp.plugins.status - DEBUG - JOINT_2 velocity: 0.0
+2023-11-23 21:01:54,483 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_backplot - DEBUG - button event LeftButtonPressEvent
+2023-11-23 21:01:57,064 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_backplot - DEBUG - button event LeftButtonReleaseEvent
+2023-11-23 21:01:58,005 - qtpyvcp.plugins.status - DEBUG - JOINT_0 output: 11.892185000039612
+2023-11-23 21:01:58,005 - qtpyvcp.plugins.status - DEBUG - JOINT_0 velocity: 0.8550000000004943
+2023-11-23 21:01:58,005 - qtpyvcp.plugins.status - DEBUG - JOINT_0 input: 11.891345000039612
+2023-11-23 21:01:58,077 - qtpyvcp.plugins.status - DEBUG - JOINT_0 output: 12.056585000039611
+2023-11-23 21:01:58,077 - qtpyvcp.plugins.status - DEBUG - JOINT_0 input: 12.053345000039613
+2023-11-23 21:01:58,078 - qtpyvcp.plugins.status - DEBUG - JOINT_0 velocity: 3.25500000000023
+2023-11-23 21:01:58,152 - qtpyvcp.plugins.status - DEBUG - JOINT_0 velocity: 5.384999999999529
+2023-11-23 21:01:58,153 - qtpyvcp.plugins.status - DEBUG - JOINT_0 input: 12.357935000039612
+2023-11-23 21:01:58,153 - qtpyvcp.plugins.status - DEBUG - JOINT_0 output: 12.363305000039611
+2023-11-23 21:01:58,227 - qtpyvcp.plugins.status - DEBUG - JOINT_0 output: 12.813755000039613
+2023-11-23 21:01:58,228 - qtpyvcp.plugins.status - DEBUG - JOINT_0 velocity: 7.484999999999964
+2023-11-23 21:01:58,228 - qtpyvcp.plugins.status - DEBUG - JOINT_0 input: 12.806285000039615
+2023-11-23 21:01:58,303 - qtpyvcp.plugins.status - DEBUG - JOINT_0 output: 13.518455000039616
+2023-11-23 21:01:58,304 - qtpyvcp.plugins.status - DEBUG - JOINT_0 input: 13.508555000039616
+2023-11-23 21:01:58,304 - qtpyvcp.plugins.status - DEBUG - JOINT_0 velocity: 9.91500000000034
+2023-11-23 21:01:58,377 - qtpyvcp.plugins.status - DEBUG - JOINT_0 input: 14.2083300000396
+2023-11-23 21:01:58,377 - qtpyvcp.plugins.status - DEBUG - JOINT_0 velocity: 9.999999999999787
+2023-11-23 21:01:58,377 - qtpyvcp.plugins.status - DEBUG - JOINT_0 output: 14.2183300000396
+2023-11-23 21:01:58,452 - qtpyvcp.plugins.status - DEBUG - JOINT_0 input: 15.018330000039583
+2023-11-23 21:01:58,453 - qtpyvcp.plugins.status - DEBUG - JOINT_0 output: 15.028330000039581
+2023-11-23 21:01:58,453 - qtpyvcp.plugins.status - DEBUG - JOINT_0 ferror_highmark: 1.7763568394002505e-15
+2023-11-23 21:01:58,527 - qtpyvcp.plugins.status - DEBUG - JOINT_0 input: 15.718330000039568
+2023-11-23 21:01:58,528 - qtpyvcp.plugins.status - DEBUG - JOINT_0 output: 15.728330000039568
+2023-11-23 21:01:58,528 - qtpyvcp.plugins.status - DEBUG - JOINT_0 ferror_current: -1.7763568394002505e-15
+2023-11-23 21:01:58,612 - qtpyvcp.plugins.status - DEBUG - JOINT_0 ferror_current: 0.0
+2023-11-23 21:01:58,612 - qtpyvcp.plugins.status - DEBUG - JOINT_0 output: 16.63724500003965
+2023-11-23 21:01:58,613 - qtpyvcp.plugins.status - DEBUG - JOINT_0 velocity: 9.745000000000559
+2023-11-23 21:01:58,613 - qtpyvcp.plugins.status - DEBUG - JOINT_0 input: 16.627485000039652
+2023-11-23 21:01:58,677 - qtpyvcp.plugins.status - DEBUG - JOINT_0 velocity: 7.945000000001201
+2023-11-23 21:01:58,677 - qtpyvcp.plugins.status - DEBUG - JOINT_0 output: 17.16794500003965
+2023-11-23 21:01:58,678 - qtpyvcp.plugins.status - DEBUG - JOINT_0 input: 17.15998500003965
+2023-11-23 21:01:58,752 - qtpyvcp.plugins.status - DEBUG - JOINT_0 velocity: 5.515000000000825
+2023-11-23 21:01:58,753 - qtpyvcp.plugins.status - DEBUG - JOINT_0 output: 17.71307500003965
+2023-11-23 21:01:58,753 - qtpyvcp.plugins.status - DEBUG - JOINT_0 input: 17.707545000039655
+2023-11-23 21:01:58,827 - qtpyvcp.plugins.status - DEBUG - JOINT_0 input: 18.022195000039655
+2023-11-23 21:01:58,827 - qtpyvcp.plugins.status - DEBUG - JOINT_0 output: 18.025625000039653
+2023-11-23 21:01:58,827 - qtpyvcp.plugins.status - DEBUG - JOINT_0 velocity: 3.41500000000039
+2023-11-23 21:01:58,904 - qtpyvcp.plugins.status - DEBUG - JOINT_0 velocity: 0.9850000000000136
+2023-11-23 21:01:58,905 - qtpyvcp.plugins.status - DEBUG - JOINT_0 output: 18.203825000039654
+2023-11-23 21:01:58,905 - qtpyvcp.plugins.status - DEBUG - JOINT_0 input: 18.202825000039656
+2023-11-23 21:01:58,977 - qtpyvcp.plugins.status - DEBUG - JOINT_0 ferror_highmark: 3.552713678800501e-15
+2023-11-23 21:01:58,978 - qtpyvcp.plugins.status - DEBUG - JOINT_0 velocity: -1.1150000000004212
+2023-11-23 21:01:58,978 - qtpyvcp.plugins.status - DEBUG - JOINT_0 output: 18.19927500003966
+2023-11-23 21:01:58,978 - qtpyvcp.plugins.status - DEBUG - JOINT_0 input: 18.200375000039656
+2023-11-23 21:01:59,052 - qtpyvcp.plugins.status - DEBUG - JOINT_0 input: 18.04772500003966
+2023-11-23 21:01:59,053 - qtpyvcp.plugins.status - DEBUG - JOINT_0 velocity: -3.2449999999997203
+2023-11-23 21:01:59,053 - qtpyvcp.plugins.status - DEBUG - JOINT_0 output: 18.04449500003966
+2023-11-23 21:01:59,128 - qtpyvcp.plugins.status - DEBUG - JOINT_0 velocity: -5.644999999999456
+2023-11-23 21:01:59,129 - qtpyvcp.plugins.status - DEBUG - JOINT_0 input: 17.69452500003966
+2023-11-23 21:01:59,129 - qtpyvcp.plugins.status - DEBUG - JOINT_0 output: 17.68889500003966
+2023-11-23 21:01:59,202 - qtpyvcp.plugins.status - DEBUG - JOINT_0 output: 17.21248500003966
+2023-11-23 21:01:59,203 - qtpyvcp.plugins.status - DEBUG - JOINT_0 input: 17.220245000039665
+2023-11-23 21:01:59,203 - qtpyvcp.plugins.status - DEBUG - JOINT_0 velocity: -7.7750000000005315
+2023-11-23 21:01:59,278 - qtpyvcp.plugins.status - DEBUG - JOINT_0 output: 16.495000000039653
+2023-11-23 21:01:59,278 - qtpyvcp.plugins.status - DEBUG - JOINT_0 velocity: -10.000000000001563
+2023-11-23 21:01:59,278 - qtpyvcp.plugins.status - DEBUG - JOINT_0 input: 16.505000000039654
+2023-11-23 21:01:59,352 - qtpyvcp.plugins.status - DEBUG - JOINT_0 output: 15.785000000039581
+2023-11-23 21:01:59,353 - qtpyvcp.plugins.status - DEBUG - JOINT_0 input: 15.795000000039579
+2023-11-23 21:01:59,353 - qtpyvcp.plugins.status - DEBUG - JOINT_0 velocity: -9.999999999999787
+2023-11-23 21:01:59,427 - qtpyvcp.plugins.status - DEBUG - JOINT_0 output: 14.985000000039598
+2023-11-23 21:01:59,428 - qtpyvcp.plugins.status - DEBUG - JOINT_0 input: 14.995000000039596
+2023-11-23 21:01:59,506 - qtpyvcp.plugins.status - DEBUG - JOINT_0 output: 14.275000000039611
+2023-11-23 21:01:59,507 - qtpyvcp.plugins.status - DEBUG - JOINT_0 input: 14.285000000039611
+2023-11-23 21:01:59,578 - qtpyvcp.plugins.status - DEBUG - JOINT_0 input: 13.485000000039628
+2023-11-23 21:01:59,578 - qtpyvcp.plugins.status - DEBUG - JOINT_0 output: 13.475000000039628
+2023-11-23 21:01:59,652 - qtpyvcp.plugins.status - DEBUG - JOINT_0 input: 12.775000000039645
+2023-11-23 21:01:59,653 - qtpyvcp.plugins.status - DEBUG - JOINT_0 output: 12.765000000039647
+2023-11-23 21:01:59,727 - qtpyvcp.plugins.status - DEBUG - JOINT_0 output: 12.06500000003966
+2023-11-23 21:01:59,727 - qtpyvcp.plugins.status - DEBUG - JOINT_0 input: 12.07500000003966
+2023-11-23 21:01:59,806 - qtpyvcp.plugins.status - DEBUG - JOINT_0 output: 11.255000000039677
+2023-11-23 21:01:59,806 - qtpyvcp.plugins.status - DEBUG - JOINT_0 input: 11.265000000039677
+2023-11-23 21:01:59,881 - qtpyvcp.plugins.status - DEBUG - JOINT_0 output: 10.555000000039692
+2023-11-23 21:01:59,881 - qtpyvcp.plugins.status - DEBUG - JOINT_0 input: 10.565000000039692
+2023-11-23 21:01:59,956 - qtpyvcp.plugins.status - DEBUG - JOINT_0 input: 9.76500000003971
+2023-11-23 21:01:59,957 - qtpyvcp.plugins.status - DEBUG - JOINT_0 output: 9.75500000003971
+2023-11-23 21:02:00,027 - qtpyvcp.plugins.status - DEBUG - JOINT_0 input: 9.055000000039724
+2023-11-23 21:02:00,027 - qtpyvcp.plugins.status - DEBUG - JOINT_0 output: 9.045000000039725
+2023-11-23 21:02:00,106 - qtpyvcp.plugins.status - DEBUG - JOINT_0 output: 8.245000000039742
+2023-11-23 21:02:00,106 - qtpyvcp.plugins.status - DEBUG - JOINT_0 input: 8.255000000039741
+2023-11-23 21:02:00,177 - qtpyvcp.plugins.status - DEBUG - JOINT_0 output: 7.535000000039756
+2023-11-23 21:02:00,178 - qtpyvcp.plugins.status - DEBUG - JOINT_0 input: 7.545000000039757
+2023-11-23 21:02:00,256 - qtpyvcp.plugins.status - DEBUG - JOINT_0 input: 6.745000000039774
+2023-11-23 21:02:00,256 - qtpyvcp.plugins.status - DEBUG - JOINT_0 output: 6.735000000039773
+2023-11-23 21:02:00,331 - qtpyvcp.plugins.status - DEBUG - JOINT_0 input: 6.03500000003979
+2023-11-23 21:02:00,331 - qtpyvcp.plugins.status - DEBUG - JOINT_0 output: 6.025000000039789
+2023-11-23 21:02:00,407 - qtpyvcp.plugins.status - DEBUG - JOINT_0 output: 5.225000000039806
+2023-11-23 21:02:00,408 - qtpyvcp.plugins.status - DEBUG - JOINT_0 input: 5.235000000039806
+2023-11-23 21:02:00,477 - qtpyvcp.plugins.status - DEBUG - JOINT_0 output: 4.537235000039812
+2023-11-23 21:02:00,478 - qtpyvcp.plugins.status - DEBUG - JOINT_0 input: 4.546095000039812
+2023-11-23 21:02:00,478 - qtpyvcp.plugins.status - DEBUG - JOINT_0 velocity: -8.844999999999992
+2023-11-23 21:02:00,553 - qtpyvcp.plugins.status - DEBUG - JOINT_0 input: 3.9983450000398104
+2023-11-23 21:02:00,553 - qtpyvcp.plugins.status - DEBUG - JOINT_0 velocity: -6.745000000000001
+2023-11-23 21:02:00,553 - qtpyvcp.plugins.status - DEBUG - JOINT_0 output: 3.991585000039809
+2023-11-23 21:02:00,553 - qtpyvcp.plugins.status - DEBUG - JOINT_0 ferror_current: -4.440892098500626e-16
+2023-11-23 21:02:00,631 - qtpyvcp.plugins.status - DEBUG - JOINT_0 output: 3.5436550000398075
+2023-11-23 21:02:00,631 - qtpyvcp.plugins.status - DEBUG - JOINT_0 input: 3.547985000039808
+2023-11-23 21:02:00,631 - qtpyvcp.plugins.status - DEBUG - JOINT_0 velocity: -4.315000000000069
+2023-11-23 21:02:00,703 - qtpyvcp.plugins.status - DEBUG - JOINT_0 velocity: -2.215000000000078
+2023-11-23 21:02:00,703 - qtpyvcp.plugins.status - DEBUG - JOINT_0 ferror_current: 0.0
+2023-11-23 21:02:00,703 - qtpyvcp.plugins.status - DEBUG - JOINT_0 output: 3.315105000039807
+2023-11-23 21:02:00,703 - qtpyvcp.plugins.status - DEBUG - JOINT_0 input: 3.3173350000398063
+2023-11-23 21:02:00,781 - qtpyvcp.plugins.status - DEBUG - JOINT_0 output: 3.2333300000398055
+2023-11-23 21:02:00,781 - qtpyvcp.plugins.status - DEBUG - JOINT_0 input: 3.233330000039806
+2023-11-23 21:02:00,782 - qtpyvcp.plugins.status - DEBUG - JOINT_0 velocity: 0.0
+2023-11-23 21:02:00,782 - qtpyvcp.plugins.status - DEBUG - JOINT_0 ferror_current: -4.440892098500626e-16
+2023-11-23 21:02:01,526 - qtpyvcp - DEBUG - Terminating widgets
+2023-11-23 21:02:01,534 - qtpyvcp.plugins - DEBUG - Terminating 'virtual_input' plugin
+2023-11-23 21:02:01,534 - qtpyvcp.plugins - DEBUG - Terminating 'exportedhal' plugin
+2023-11-23 21:02:01,535 - qtpyvcp.plugins - DEBUG - Terminating 'file_locations' plugin
+2023-11-23 21:02:01,535 - qtpyvcp.plugins - DEBUG - Terminating 'notifications' plugin
+2023-11-23 21:02:01,535 - qtpyvcp.plugins - DEBUG - Terminating 'offsettable' plugin
+2023-11-23 21:02:01,535 - qtpyvcp.plugins - DEBUG - Terminating 'tooltable' plugin
+2023-11-23 21:02:01,535 - qtpyvcp.plugins - DEBUG - Terminating 'position' plugin
+2023-11-23 21:02:01,535 - qtpyvcp.plugins - DEBUG - Terminating 'settings' plugin
+2023-11-23 21:02:01,535 - qtpyvcp.plugins - DEBUG - Terminating 'persistent_data_manager' plugin
+2023-11-23 21:02:01,536 - qtpyvcp.plugins.persistent_data_manager - DEBUG - Writing persistent data to file: /home/groot/linuxcnc/configs/probe_basic/.vcp_persistent_data.pickle
+2023-11-23 21:02:01,536 - qtpyvcp.plugins - DEBUG - Terminating 'status' plugin
