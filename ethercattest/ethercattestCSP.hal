@@ -1,0 +1,129 @@
+
+loadrt    [KINS]KINEMATICS
+loadrt    [EMCMOT]EMCMOT servo_period_nsec=[EMCMOT]SERVO_PERIOD num_joints=[KINS]JOINTS
+#loadrt    hostmot2
+#loadrt    hm2_eth board_ip="10.10.10.10" config="num_encoders=1 num_pwmgens=0 num_stepgens=5 sserial_port_0=222000" 
+#setp      hm2_7i92.0.watchdog.timeout_ns 50000000
+
+loadusr     -W lcec_conf ethercat-conf-A3CSP.xml
+loadrt      lcec
+loadrt cia402 names=cia402.A3,cia402.X
+loadrt pid names=pid.x,pid.y,pid.z
+
+
+###########################################################
+# Functions servo-thread
+###########################################################
+
+addf lcec.read-all servo-thread
+addf cia402.X.read-all servo-thread
+addf cia402.A3.read-all servo-thread
+
+addf motion-command-handler servo-thread
+addf motion-controller servo-thread
+
+addf pid.x.do-pid-calcs servo-thread
+addf pid.y.do-pid-calcs servo-thread
+addf pid.z.do-pid-calcs servo-thread
+
+addf cia402.X.write-all servo-thread
+addf cia402.A3.write-all servo-thread
+addf lcec.write-all servo-thread
+
+#########################################
+#nets
+#########################################
+net emc-enable => iocontrol.0.emc-enable-in
+sets emc-enable 1
+
+
+# Config for RINTELLENT ECT60
+
+#config
+setp cia402.X.csp-mode 1
+setp cia402.X.pos-scale 3600
+
+#from servo(ethercat) to cia402
+net x-statusword      lcec.0.axis0.cia-statusword => cia402.X.statusword
+net x-opmode-display  lcec.0.axis0.opmode-display => cia402.X.opmode-display
+net x-drv-act-pos     lcec.0.axis0.actual-position => cia402.X.drv-actual-position
+net x-drv-act-velo    lcec.0.axis0.actual-velocity => cia402.X.drv-actual-velocity
+
+#from cia402 to servo(ethercat) 
+net x-controlword         cia402.X.controlword => lcec.0.axis0.cia-controlword
+net x-modes-of-operation  cia402.X.opmode => lcec.0.axis0.opmode
+net x-drv-target-pos      cia402.X.drv-target-position => lcec.0.axis0.target-position
+net x-drv-target-velo     cia402.X.drv-target-velocity => lcec.0.axis0.target-velocity
+
+#from motion to cia
+net x-enable    <= joint.0.amp-enable-out => cia402.X.enable
+net x-amp-fault => joint.0.amp-fault-in   <= cia402.X.drv-fault
+net x-pos-cmd   <= joint.0.motor-pos-cmd  => cia402.X.pos-cmd
+net x-pos-fb    => joint.0.motor-pos-fb   <= cia402.X.pos-fb
+
+#homing
+net x-home-index <= joint.0.index-enable  => cia402.X.home
+
+
+
+# Sample Config for DELTA using CIA402 with CSP Mode
+
+## CiA402
+setp cia402.A3.csp-mode 			1
+# This value is a tad bit weird.... this could be EITHER the number of encoder ticks or the egear value. In this setup egear is set to 10.000 ppr --> pitch 5mm --> pos-scale = 2000
+# Should try no egear but could not be bothered yet. Careful... A3 Drives with A2 series Motors can be tricky
+setp cia402.A3.pos-scale 			2000 
+
+
+net y-statusword      	lcec.0.A3.cia-statusword  			=> cia402.A3.statusword
+
+#from servo(ethercat) to cia402
+net y-statusword      	lcec.0.A3.cia-statusword 			=> cia402.A3.statusword
+net y-opmode-display  	lcec.0.A3.opmode-display 			=> cia402.A3.opmode-display
+net y-drv-act-pos     	lcec.0.A3.actual-position 			=> cia402.A3.drv-actual-position
+net y-drv-act-velo    	lcec.0.A3.actual-velocity 			=> cia402.A3.drv-actual-velocity
+
+#from cia402 to servo(ethercat) 
+net y-controlword         cia402.A3.controlword 			=> lcec.0.A3.cia-controlword
+net y-modes-of-operation  cia402.A3.opmode 					=> lcec.0.A3.opmode
+net y-drv-target-pos      cia402.A3.drv-target-position 	=> lcec.0.A3.target-position
+net y-drv-target-velo     cia402.A3.drv-target-velocity 	=> lcec.0.A3.target-velocity
+
+#from motion to cia
+net y-enable    		<= joint.1.amp-enable-out 					=> cia402.A3.enable
+net y-amp-fault 		=> joint.1.amp-fault-in   					<= cia402.A3.drv-fault
+net y-pos-cmd   		<= joint.1.motor-pos-cmd  					=> cia402.A3.pos-cmd
+net y-pos-fb    		=> joint.1.motor-pos-fb   					<= cia402.A3.pos-fb
+
+net         limit-axis                                  => lcec.0.D2.din-0-not
+net         limit-axis                           => joint.1.home-sw-in
+net         limit-axis                           => joint.1.neg-lim-sw-in
+net         axis-pos-limit                                 => joint.1.pos-lim-sw-in lcec.0.D2.din-2-not
+
+#*******************
+#  AXIS Y JOINT 1
+#*******************
+
+setp   pid.y.Pgain     [JOINT_1]P
+setp   pid.y.Igain     [JOINT_1]I
+setp   pid.y.Dgain     [JOINT_1]D
+setp   pid.y.bias      [JOINT_1]BIAS
+setp   pid.y.FF0       [JOINT_1]FF0
+setp   pid.y.FF1       [JOINT_1]FF1
+setp   pid.y.FF2       [JOINT_1]FF2
+setp   pid.y.deadband  [JOINT_1]DEADBAND
+setp   pid.y.maxoutput [JOINT_1]MAX_OUTPUT
+setp   pid.y.error-previous-target true
+# This setting is to limit bogus stepgen
+# velocity corrections caused by position
+# feedback sample time jitter.
+setp   pid.y.maxerror 0.012700
+
+net y-indey-enable  <=> pid.y.index-enable
+net y-enable        =>  pid.y.enable
+net y-pos-cmd       =>  pid.y.command
+net y-pos-fb        =>  pid.y.feedback
+net y-output        <=  pid.y.output		
+
+net y-pos-cmd    <= joint.1.motor-pos-cmd
+net y-vel-cmd    <= joint.1.vel-cmd
