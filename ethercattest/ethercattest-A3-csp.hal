@@ -1,0 +1,94 @@
+
+loadrt    [KINS]KINEMATICS
+loadrt    [EMCMOT]EMCMOT servo_period_nsec=[EMCMOT]SERVO_PERIOD num_joints=[KINS]JOINTS
+#loadrt    hostmot2
+#loadrt    hm2_eth board_ip="10.10.10.10" config="num_encoders=1 num_pwmgens=0 num_stepgens=5 sserial_port_0=222000" 
+#setp      hm2_7i92.0.watchdog.timeout_ns 50000000
+
+loadusr     -W lcec_conf ethercat-conf-A3-new.xml
+loadrt      lcec
+loadrt pid names=pid.x,pid.y,pid.z
+
+
+###########################################################
+# Functions servo-thread
+###########################################################
+
+addf lcec.read-all servo-thread
+
+addf motion-command-handler servo-thread
+addf motion-controller servo-thread
+
+addf pid.x.do-pid-calcs servo-thread
+addf pid.y.do-pid-calcs servo-thread
+addf pid.z.do-pid-calcs servo-thread
+
+addf lcec.write-all servo-thread
+
+#########################################
+#nets
+#########################################
+net emc-enable => iocontrol.0.emc-enable-in
+sets emc-enable 1
+
+
+# Sample Config for DELTA
+
+
+#*******************
+#  AXIS X JOINT 0
+#*******************
+
+setp   pid.y.Pgain     [JOINT_1]P
+setp   pid.y.Igain     [JOINT_1]I
+setp   pid.y.Dgain     [JOINT_1]D
+setp   pid.y.bias      [JOINT_1]BIAS
+setp   pid.y.FF0       [JOINT_1]FF0
+setp   pid.y.FF1       [JOINT_1]FF1
+setp   pid.y.FF2       [JOINT_1]FF2
+setp   pid.y.deadband  [JOINT_1]DEADBAND
+setp   pid.y.maxoutput [JOINT_1]MAX_OUTPUT
+setp   pid.y.error-previous-target true
+# This setting is to limit bogus stepgen
+# velocity corrections caused by position
+# feedback sample time jitter.
+setp   pid.y.maxerror 0.012700
+
+net y-index-enable  <=> pid.y.index-enable
+net y-enable        =>  pid.y.enable
+net y-pos-cmd       =>  pid.y.command
+net y-pos-fb        =>  pid.y.feedback
+net y-output        <=  pid.y.output		
+
+setp lcec.0.A3.srv-enable-volt 		1
+setp lcec.0.A3.srv-fault-reset 		1
+
+# this is the mm per REF that is othervise known as step_scale
+# this should include stupid factors for gearing
+setp lcec.0.A3.pos-scale 5 
+# This should not be touched for asda-a2
+
+# A3:
+# Latest test: Set Egear so that a certain number of pulses per rev is resulting (unclear how this is done with gearing)
+setp lcec.0.A3.srv-pulses-per-rev 10000
+# This is only relevant when an extenral encoder is being used.
+setp lcec.0.A3.extenc-scale 0.001 # not used as we have not connected the scale
+
+
+net y-pos-cmd    <= joint.1.motor-pos-cmd  lcec.0.A3.srv-pos-cmd
+net y-vel-cmd    <= joint.1.vel-cmd
+
+net y-pos-fb     <= lcec.0.A3.enc-pos-abs
+net y-pos-fb     => joint.1.motor-pos-fb
+
+net y-enable     <= joint.1.amp-enable-out
+net y-enable     => lcec.0.A3.srv-switch-on
+net y-enable     => lcec.0.A3.srv-enable
+
+
+# ---setup home / limit switch signals---
+
+#net         limit-axis                                  => lcec.0.D2.din-0-not
+net         limit-axis                           => joint.1.home-sw-in
+net         limit-axis                           => joint.1.neg-lim-sw-in
+#net         axis-pos-limit                                 => joint.1.pos-lim-sw-in lcec.0.D2.din-2-not

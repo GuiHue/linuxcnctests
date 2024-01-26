@@ -1,13 +1,28 @@
 # Halshow settings
 # This file is generated automatically.
-wm geometry . 991x792+570+70
+wm geometry . 991x792+88+122
 placeFrames 0.338100102145046
 set ::ratio 0.338100102145046
 set ::old_w_leftf 160
 set ::watchlist {
-    param+cia402.A3.pos-scale
+    pin+lcec.0.A3.srv-ready
+    pin+lcec.0.A3.enc-pos-abs
+    pin+lcec.0.A3.slave-online
+    pin+lcec.0.A3.slave-oper
+    pin+lcec.0.A3.slave-state-init
+    pin+lcec.0.A3.slave-state-op
+    pin+lcec.0.A3.slave-state-preop
+    pin+lcec.0.A3.slave-state-safeop
+    pin+lcec.0.A3.srv-fault-reset
+    pin+lcec.0.A2.srv-ready
+    pin+lcec.0.A2.enc-pos-abs
+    pin+lcec.0.A2.srv-fault
+    pin+lcec.0.A2.srv-fault-reset
+    pin+halui.machine.is-on
+    pin+lcec.0.A2.srv-operation-mode
+    pin+lcec.0.A3.srv-operation-mode
 }
-set ::workmode watchhal
+set ::workmode showhal
 set ::watchInterval 100
 set ::col1_width 100
 set ::ffmts 

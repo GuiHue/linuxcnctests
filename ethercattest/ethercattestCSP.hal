@@ -7,7 +7,7 @@ loadrt    [EMCMOT]EMCMOT servo_period_nsec=[EMCMOT]SERVO_PERIOD num_joints=[KINS
 
 loadusr     -W lcec_conf ethercat-conf-A3CSP.xml
 loadrt      lcec
-loadrt cia402 names=cia402.A3,cia402.X
+loadrt cia402 names=cia402.A3
 loadrt pid names=pid.x,pid.y,pid.z
 
 
@@ -16,7 +16,7 @@ loadrt pid names=pid.x,pid.y,pid.z
 ###########################################################
 
 addf lcec.read-all servo-thread
-addf cia402.X.read-all servo-thread
+
 addf cia402.A3.read-all servo-thread
 
 addf motion-command-handler servo-thread
@@ -26,7 +26,6 @@ addf pid.x.do-pid-calcs servo-thread
 addf pid.y.do-pid-calcs servo-thread
 addf pid.z.do-pid-calcs servo-thread
 
-addf cia402.X.write-all servo-thread
 addf cia402.A3.write-all servo-thread
 addf lcec.write-all servo-thread
 
@@ -35,34 +34,6 @@ addf lcec.write-all servo-thread
 #########################################
 net emc-enable => iocontrol.0.emc-enable-in
 sets emc-enable 1
-
-
-# Config for RINTELLENT ECT60
-
-#config
-setp cia402.X.csp-mode 1
-setp cia402.X.pos-scale 3600
-
-#from servo(ethercat) to cia402
-net x-statusword      lcec.0.axis0.cia-statusword => cia402.X.statusword
-net x-opmode-display  lcec.0.axis0.opmode-display => cia402.X.opmode-display
-net x-drv-act-pos     lcec.0.axis0.actual-position => cia402.X.drv-actual-position
-net x-drv-act-velo    lcec.0.axis0.actual-velocity => cia402.X.drv-actual-velocity
-
-#from cia402 to servo(ethercat) 
-net x-controlword         cia402.X.controlword => lcec.0.axis0.cia-controlword
-net x-modes-of-operation  cia402.X.opmode => lcec.0.axis0.opmode
-net x-drv-target-pos      cia402.X.drv-target-position => lcec.0.axis0.target-position
-net x-drv-target-velo     cia402.X.drv-target-velocity => lcec.0.axis0.target-velocity
-
-#from motion to cia
-net x-enable    <= joint.0.amp-enable-out => cia402.X.enable
-net x-amp-fault => joint.0.amp-fault-in   <= cia402.X.drv-fault
-net x-pos-cmd   <= joint.0.motor-pos-cmd  => cia402.X.pos-cmd
-net x-pos-fb    => joint.0.motor-pos-fb   <= cia402.X.pos-fb
-
-#homing
-net x-home-index <= joint.0.index-enable  => cia402.X.home
 
 
 
@@ -95,10 +66,10 @@ net y-amp-fault 		=> joint.1.amp-fault-in   					<= cia402.A3.drv-fault
 net y-pos-cmd   		<= joint.1.motor-pos-cmd  					=> cia402.A3.pos-cmd
 net y-pos-fb    		=> joint.1.motor-pos-fb   					<= cia402.A3.pos-fb
 
-net         limit-axis                                  => lcec.0.D2.din-0-not
+#net         limit-axis                                  => lcec.0.D2.din-0-not
 net         limit-axis                           => joint.1.home-sw-in
 net         limit-axis                           => joint.1.neg-lim-sw-in
-net         axis-pos-limit                                 => joint.1.pos-lim-sw-in lcec.0.D2.din-2-not
+#net         axis-pos-limit                                 => joint.1.pos-lim-sw-in lcec.0.D2.din-2-not
 
 #*******************
 #  AXIS Y JOINT 1
