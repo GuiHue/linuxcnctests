@@ -1,28 +1,60 @@
 # Halshow settings
 # This file is generated automatically.
-wm geometry . 991x792+88+122
+wm geometry . 991x792+899+126
 placeFrames 0.338100102145046
 set ::ratio 0.338100102145046
 set ::old_w_leftf 160
 set ::watchlist {
-    pin+lcec.0.A3.srv-ready
+    pin+lcec.0.EasyCAT.analog1
+    pin+lcec.0.EasyCAT.analog2
+    pin+lcec.0.EasyCAT.enc1
+    pin+lcec.0.EasyCAT.in-1
+    pin+lcec.0.EasyCAT.in-2
+    pin+lcec.0.EasyCAT.in-3
+    pin+lcec.0.EasyCAT.in-4
+    pin+lcec.0.EasyCAT.in-5
+    pin+lcec.0.EasyCAT.in-6
+    pin+lcec.0.EasyCAT.in-7
+    pin+lcec.0.EasyCAT.in-8
+    pin+lcec.0.EasyCAT.in-9
+    pin+lcec.0.EasyCAT.in-10
+    pin+lcec.0.EasyCAT.in-11
+    pin+lcec.0.EasyCAT.in-12
+    pin+lcec.0.EasyCAT.in-13
+    pin+lcec.0.EasyCAT.in-14
+    pin+lcec.0.EasyCAT.in-15
+    pin+lcec.0.EasyCAT.in-16
+    pin+lcec.0.EasyCAT.out-1
+    pin+lcec.0.EasyCAT.out-2
+    pin+lcec.0.EasyCAT.out-3
+    pin+lcec.0.EasyCAT.out-4
+    pin+lcec.0.EasyCAT.out-5
+    pin+lcec.0.EasyCAT.out-6
+    pin+lcec.0.EasyCAT.out-7
+    pin+lcec.0.EasyCAT.out-8
+    pin+lcec.0.EasyCAT.out-9
+    pin+lcec.0.EasyCAT.out-10
+    pin+lcec.0.EasyCAT.out-11
+    pin+lcec.0.EasyCAT.out-12
+    pin+lcec.0.EasyCAT.out-13
+    pin+lcec.0.EasyCAT.out-14
+    pin+lcec.0.EasyCAT.out-15
+    pin+lcec.0.EasyCAT.out-16
+    pin+lcec.0.EasyCAT.slave-online
+    pin+lcec.0.EasyCAT.slave-oper
+    pin+lcec.0.EasyCAT.slave-state-init
+    pin+lcec.0.EasyCAT.slave-state-op
+    pin+lcec.0.EasyCAT.slave-state-preop
+    pin+lcec.0.EasyCAT.slave-state-safeop
+    pin+lcec.0.A3.enc-ref-lo
+    pin+lcec.0.A3.enc-ref-hi
+    pin+lcec.0.A3.enc-raw
+    pin+lcec.0.A3.enc-pos-reset
+    pin+lcec.0.A3.enc-pos-enc
     pin+lcec.0.A3.enc-pos-abs
-    pin+lcec.0.A3.slave-online
-    pin+lcec.0.A3.slave-oper
-    pin+lcec.0.A3.slave-state-init
-    pin+lcec.0.A3.slave-state-op
-    pin+lcec.0.A3.slave-state-preop
-    pin+lcec.0.A3.slave-state-safeop
-    pin+lcec.0.A3.srv-fault-reset
-    pin+lcec.0.A2.srv-ready
-    pin+lcec.0.A2.enc-pos-abs
-    pin+lcec.0.A2.srv-fault
-    pin+lcec.0.A2.srv-fault-reset
-    pin+halui.machine.is-on
-    pin+lcec.0.A2.srv-operation-mode
-    pin+lcec.0.A3.srv-operation-mode
+    pin+lcec.0.A3.enc-pos
 }
-set ::workmode showhal
+set ::workmode watchhal
 set ::watchInterval 100
 set ::col1_width 100
 set ::ffmts 

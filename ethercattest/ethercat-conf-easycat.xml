@@ -1,6 +1,6 @@
 <masters>
   <master idx="0" appTimePeriod="1000000" refClockSyncCycles="-1">
-    <slave idx="0" type="generic" vid="0000079a" pid="00defede" configPdos="true" name="EasyCAT">
+    <slave idx="0" type="generic" vid="0000079a" pid="deadbeef" configPdos="true" name="EasyCAT">
     <syncManager idx="0" dir="out">
 		<pdo idx="1600">
 		  <pdoEntry idx="0005" subIdx="01" bitLen="8" halType="complex">
@@ -8,30 +8,54 @@
 			<complexEntry bitLen="1" halPin="out-2" halType="bit"/>
 			<complexEntry bitLen="1" halPin="out-3" halType="bit"/>
 			<complexEntry bitLen="1" halPin="out-4" halType="bit"/>
-			<complexEntry bitLen="4"/>
+			<complexEntry bitLen="1" halPin="out-5" halType="bit"/>
+			<complexEntry bitLen="1" halPin="out-6" halType="bit"/>
+			<complexEntry bitLen="1" halPin="out-7" halType="bit"/>
+			<complexEntry bitLen="1" halPin="out-8" halType="bit"/>
+		  </pdoEntry>
+		  <pdoEntry idx="0005" subIdx="02" bitLen="8" halType="complex">
+			<complexEntry bitLen="1" halPin="out-9" halType="bit"/>
+			<complexEntry bitLen="1" halPin="out-10" halType="bit"/>
+			<complexEntry bitLen="1" halPin="out-11" halType="bit"/>
+			<complexEntry bitLen="1" halPin="out-12" halType="bit"/>
+			<complexEntry bitLen="1" halPin="out-13" halType="bit"/>
+			<complexEntry bitLen="1" halPin="out-14" halType="bit"/>
+			<complexEntry bitLen="1" halPin="out-15" halType="bit"/>
+			<complexEntry bitLen="1" halPin="out-16" halType="bit"/>
 		  </pdoEntry>
 		</pdo>
 	</syncManager>	
 	<syncManager idx="1" dir="in">
         <pdo idx="1A00">
-        	<pdoEntry idx="0006" subIdx="01" bitLen="8" halPin="analog_in1" halType="s32"/>
-          	<pdoEntry idx="0006" subIdx="02" bitLen="8" halPin="analog_in_2" halType="s32"/>
-          	<pdoEntry idx="0006" subIdx="03" bitLen="8" halPin="Bit8_RisingTestRampSlow" halType="u32"/>
-			<pdoEntry idx="0006" subIdx="04" bitLen="8" halPin="Bit8_RisingTestRampExSlow" halType="u32"/>
-			<pdoEntry idx="0006" subIdx="05" bitLen="8" halPin="Bit8_FallingTestRampSlow" halType="u32"/>
-			<pdoEntry idx="0006" subIdx="06" bitLen="8" halPin="Bit8_FallingTestRampExlow" halType="u32"/>
-          	<pdoEntry idx="0006" subIdx="07" bitLen="8" halType="complex">
+			<pdoEntry idx="0006" subIdx="01" bitLen="32" halPin="analog1" halType="float-ieee"/>
+			<pdoEntry idx="0006" subIdx="02" bitLen="32" halPin="analog2" halType="float-ieee"/>
+			<pdoEntry idx="0006" subIdx="03" bitLen="32" halPin="enc1" halType="s32"/>
+			<pdoEntry idx="0006" subIdx="04" bitLen="8" halType="complex">
 				<complexEntry bitLen="1" halPin="in-1" halType="bit"/>
 				<complexEntry bitLen="1" halPin="in-2" halType="bit"/>
 				<complexEntry bitLen="1" halPin="in-3" halType="bit"/>
 				<complexEntry bitLen="1" halPin="in-4" halType="bit"/>
-				<complexEntry bitLen="4"/>
+				<complexEntry bitLen="1" halPin="in-5" halType="bit"/>
+				<complexEntry bitLen="1" halPin="in-6" halType="bit"/>
+				<complexEntry bitLen="1" halPin="in-7" halType="bit"/>
+				<complexEntry bitLen="1" halPin="in-8" halType="bit"/>
 			</pdoEntry>
-			<pdoEntry idx="0006" subIdx="1F" bitLen="8" halPin="Bit8_RisingTestRampMed" halType="u32"/>
-			<pdoEntry idx="0006" subIdx="20" bitLen="8" halPin="Bit8_FallingTestRampMed" halType="u32"/>
-
+			<pdoEntry idx="0006" subIdx="05" bitLen="8" halType="complex">
+				<complexEntry bitLen="1" halPin="in-9" halType="bit"/>
+				<complexEntry bitLen="1" halPin="in-10" halType="bit"/>
+				<complexEntry bitLen="1" halPin="in-11" halType="bit"/>
+				<complexEntry bitLen="1" halPin="in-12" halType="bit"/>
+				<complexEntry bitLen="1" halPin="in-13" halType="bit"/>
+				<complexEntry bitLen="1" halPin="in-14" halType="bit"/>
+				<complexEntry bitLen="1" halPin="in-15" halType="bit"/>
+				<complexEntry bitLen="1" halPin="in-16" halType="bit"/>
+			</pdoEntry>
         </pdo>
 	</syncManager>
-  </slave> 
+  </slave>
+      <slave idx="1" type="DeASDA3" name="A3">
+      <dcConf assignActivate="300" sync0Cycle="*1" sync0Shift="0"/>
+      <modParam name="opmode" value="CSP"/>
+    </slave>  
 </master>
 </masters>
