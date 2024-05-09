@@ -1,29 +1,10 @@
 # Halshow settings
 # This file is generated automatically.
-wm geometry . 991x792+899+126
+wm geometry . 1920x997+0+27
 placeFrames 0.338100102145046
 set ::ratio 0.338100102145046
 set ::old_w_leftf 160
 set ::watchlist {
-    pin+lcec.0.EasyCAT.analog1
-    pin+lcec.0.EasyCAT.analog2
-    pin+lcec.0.EasyCAT.enc1
-    pin+lcec.0.EasyCAT.in-1
-    pin+lcec.0.EasyCAT.in-2
-    pin+lcec.0.EasyCAT.in-3
-    pin+lcec.0.EasyCAT.in-4
-    pin+lcec.0.EasyCAT.in-5
-    pin+lcec.0.EasyCAT.in-6
-    pin+lcec.0.EasyCAT.in-7
-    pin+lcec.0.EasyCAT.in-8
-    pin+lcec.0.EasyCAT.in-9
-    pin+lcec.0.EasyCAT.in-10
-    pin+lcec.0.EasyCAT.in-11
-    pin+lcec.0.EasyCAT.in-12
-    pin+lcec.0.EasyCAT.in-13
-    pin+lcec.0.EasyCAT.in-14
-    pin+lcec.0.EasyCAT.in-15
-    pin+lcec.0.EasyCAT.in-16
     pin+lcec.0.EasyCAT.out-1
     pin+lcec.0.EasyCAT.out-2
     pin+lcec.0.EasyCAT.out-3
@@ -40,19 +21,110 @@ set ::watchlist {
     pin+lcec.0.EasyCAT.out-14
     pin+lcec.0.EasyCAT.out-15
     pin+lcec.0.EasyCAT.out-16
-    pin+lcec.0.EasyCAT.slave-online
-    pin+lcec.0.EasyCAT.slave-oper
-    pin+lcec.0.EasyCAT.slave-state-init
-    pin+lcec.0.EasyCAT.slave-state-op
-    pin+lcec.0.EasyCAT.slave-state-preop
-    pin+lcec.0.EasyCAT.slave-state-safeop
-    pin+lcec.0.A3.enc-ref-lo
-    pin+lcec.0.A3.enc-ref-hi
-    pin+lcec.0.A3.enc-raw
-    pin+lcec.0.A3.enc-pos-reset
-    pin+lcec.0.A3.enc-pos-enc
-    pin+lcec.0.A3.enc-pos-abs
-    pin+lcec.0.A3.enc-pos
+    pin+lcec.0.EasyCAT.out-17
+    pin+lcec.0.EasyCAT.out-18
+    pin+lcec.0.EasyCAT.out-19
+    pin+lcec.0.EasyCAT.out-20
+    pin+lcec.0.EasyCAT.out-21
+    pin+lcec.0.EasyCAT.out-22
+    pin+lcec.0.EasyCAT.out-23
+    pin+lcec.0.EasyCAT.out-24
+    pin+lcec.0.EasyCAT.out-25
+    pin+lcec.0.EasyCAT.out-26
+    pin+lcec.0.EasyCAT.out-27
+    pin+lcec.0.EasyCAT.out-28
+    pin+lcec.0.EasyCAT.out-29
+    pin+lcec.0.EasyCAT.out-30
+    pin+lcec.0.EasyCAT.out-31
+    pin+lcec.0.EasyCAT.out-32
+    pin+lcec.0.EasyCAT.out-33
+    pin+lcec.0.EasyCAT.out-34
+    pin+lcec.0.EasyCAT.out-35
+    pin+lcec.0.EasyCAT.out-36
+    pin+lcec.0.EasyCAT.out-37
+    pin+lcec.0.EasyCAT.out-38
+    pin+lcec.0.EasyCAT.out-39
+    pin+lcec.0.EasyCAT.out-40
+    pin+lcec.0.EasyCAT.out-41
+    pin+lcec.0.EasyCAT.out-42
+    pin+lcec.0.EasyCAT.out-43
+    pin+lcec.0.EasyCAT.out-44
+    pin+lcec.0.EasyCAT.out-45
+    pin+lcec.0.EasyCAT.out-46
+    pin+lcec.0.EasyCAT.out-47
+    pin+lcec.0.EasyCAT.out-48
+    pin+lcec.0.EasyCAT.out-49
+    pin+lcec.0.EasyCAT.out-50
+    pin+lcec.0.EasyCAT.out-51
+    pin+lcec.0.EasyCAT.out-52
+    pin+lcec.0.EasyCAT.out-53
+    pin+lcec.0.EasyCAT.out-54
+    pin+lcec.0.EasyCAT.out-55
+    pin+lcec.0.EasyCAT.out-56
+    pin+lcec.0.EasyCAT.in-1
+    pin+lcec.0.EasyCAT.in-2
+    pin+lcec.0.EasyCAT.in-3
+    pin+lcec.0.EasyCAT.in-4
+    pin+lcec.0.EasyCAT.in-5
+    pin+lcec.0.EasyCAT.in-6
+    pin+lcec.0.EasyCAT.in-7
+    pin+lcec.0.EasyCAT.in-8
+    pin+lcec.0.EasyCAT.in-9
+    pin+lcec.0.EasyCAT.in-10
+    pin+lcec.0.EasyCAT.in-11
+    pin+lcec.0.EasyCAT.in-12
+    pin+lcec.0.EasyCAT.in-13
+    pin+lcec.0.EasyCAT.in-14
+    pin+lcec.0.EasyCAT.in-15
+    pin+lcec.0.EasyCAT.in-16
+    pin+lcec.0.EasyCAT.in-17
+    pin+lcec.0.EasyCAT.in-18
+    pin+lcec.0.EasyCAT.in-19
+    pin+lcec.0.EasyCAT.in-20
+    pin+lcec.0.EasyCAT.in-21
+    pin+lcec.0.EasyCAT.in-22
+    pin+lcec.0.EasyCAT.in-23
+    pin+lcec.0.EasyCAT.in-24
+    pin+lcec.0.EasyCAT.in-25
+    pin+lcec.0.EasyCAT.in-26
+    pin+lcec.0.EasyCAT.in-27
+    pin+lcec.0.EasyCAT.in-28
+    pin+lcec.0.EasyCAT.in-29
+    pin+lcec.0.EasyCAT.in-30
+    pin+lcec.0.EasyCAT.in-31
+    pin+lcec.0.EasyCAT.in-32
+    pin+lcec.0.EasyCAT.in-33
+    pin+lcec.0.EasyCAT.in-34
+    pin+lcec.0.EasyCAT.in-35
+    pin+lcec.0.EasyCAT.in-36
+    pin+lcec.0.EasyCAT.in-37
+    pin+lcec.0.EasyCAT.in-38
+    pin+lcec.0.EasyCAT.in-39
+    pin+lcec.0.EasyCAT.in-40
+    pin+lcec.0.EasyCAT.in-41
+    pin+lcec.0.EasyCAT.in-42
+    pin+lcec.0.EasyCAT.in-43
+    pin+lcec.0.EasyCAT.in-44
+    pin+lcec.0.EasyCAT.in-45
+    pin+lcec.0.EasyCAT.in-46
+    pin+lcec.0.EasyCAT.in-47
+    pin+lcec.0.EasyCAT.in-48
+    pin+lcec.0.EasyCAT.in-49
+    pin+lcec.0.EasyCAT.in-50
+    pin+lcec.0.EasyCAT.in-51
+    pin+lcec.0.EasyCAT.in-52
+    pin+lcec.0.EasyCAT.in-53
+    pin+lcec.0.EasyCAT.in-54
+    pin+lcec.0.EasyCAT.in-55
+    pin+lcec.0.EasyCAT.in-56
+    pin+lcec.0.EasyCAT.in-57
+    pin+lcec.0.EasyCAT.in-58
+    pin+lcec.0.EasyCAT.in-59
+    pin+lcec.0.EasyCAT.in-60
+    pin+lcec.0.EasyCAT.in-61
+    pin+lcec.0.EasyCAT.in-62
+    pin+lcec.0.EasyCAT.in-63
+    pin+lcec.0.EasyCAT.in-64
 }
 set ::workmode watchhal
 set ::watchInterval 100
