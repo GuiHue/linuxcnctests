@@ -1,0 +1,27 @@
+
+loadrt    [KINS]KINEMATICS
+loadrt    [EMCMOT]EMCMOT servo_period_nsec=[EMCMOT]SERVO_PERIOD num_joints=[KINS]JOINTS
+
+loadusr     -W lcec_conf ethercat-conf.xml
+loadrt      lcec
+
+
+
+###########################################################
+# Functions servo-thread
+###########################################################
+ must be first
+addf lcec.read-all servo-thread
+
+addf motion-command-handler servo-thread
+addf motion-controller servo-thread
+
+# must be last
+addf lcec.write-all servo-thread
+
+#########################################
+# Networks
+#########################################
+net emc-enable => iocontrol.0.emc-enable-in
+sets emc-enable 1
+
