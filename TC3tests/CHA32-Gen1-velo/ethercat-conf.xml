@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<masters>
+  <master idx="0" appTimePeriod="1000000" refClockSyncCycles="-1">
+    <!--Slave Antrieb 1 (AX5206-0000-0011) type of AX5206-0000-0011 in position at bus-0 as SoE-->
+    <slave idx="0" type="generic" vid="0x00000002" pid="0x14566012" name="Antrieb-1-AX5-0" configPdos="true">
+      <syncManager idx="0" dir="out" />
+      <syncManager idx="1" dir="in" />
+      <syncManager idx="2" dir="out">
+        <pdo idx="0018">
+          <pdoEntry idx="0086" subIdx="00" bitLen="16" halPin="Master-control-0" halType="s32">
+            <!--MDT 1-Master-control- -0-->
+          </pdoEntry>
+          <pdoEntry idx="0024" subIdx="00" bitLen="32" halPin="Velocity-comman-1" halType="s32">
+            <!--MDT 1-Velocity-comman-1-->
+          </pdoEntry>
+        </pdo>
+        <pdo idx="1018">
+          <pdoEntry idx="0086" subIdx="00" bitLen="16" halPin="Master-control-2" halType="s32">
+            <!--MDT 2-Master-control- -2-->
+          </pdoEntry>
+          <pdoEntry idx="0024" subIdx="00" bitLen="32" halPin="Velocity-comman-3" halType="s32">
+            <!--MDT 2-Velocity-comman-3-->
+          </pdoEntry>
+        </pdo>
+      </syncManager>
+      <syncManager idx="3" dir="in">
+        <pdo idx="0010">
+          <pdoEntry idx="0087" subIdx="00" bitLen="16" halPin="Drive-status-wo-4" halType="s32">
+            <!--AT 1-Drive-status-wo-4-->
+          </pdoEntry>
+          <pdoEntry idx="0033" subIdx="00" bitLen="32" halPin="Position-feedba-5" halType="s32">
+            <!--AT 1-Position-feedba-5-->
+          </pdoEntry>
+        </pdo>
+        <pdo idx="1010">
+          <pdoEntry idx="0087" subIdx="00" bitLen="16" halPin="Drive-status-wo-6" halType="s32">
+            <!--AT 2-Drive-status-wo-6-->
+          </pdoEntry>
+          <pdoEntry idx="0033" subIdx="00" bitLen="32" halPin="Position-feedba-7" halType="s32">
+            <!--AT 2-Position-feedba-7-->
+          </pdoEntry>
+        </pdo>
+      </syncManager>
+      <dcConf assignActivate="1000" sync0Cycle="250000" sync0Shift="50000" sync1Cycle="750000" sync1Shift="50000" />
+      <!--IMPORTANT: sometime (sync1Cycle = n * sync0Cycle) sync1Cycle must be appTimePeriod - sync0Cycle)-->
+      <!--Check your DC config...generated is from impoted .xml but assignActivate is hard coded ... it should be different-->
+    </slave>
+  </master>
+</masters>
